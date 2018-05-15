@@ -2,7 +2,7 @@ sudo apt-get install -y nodejs
 sudo apt-get install -y npm
 sudo apt-get install -y nodejs-legacy 
 npm -v
-sudo npm install -g hexo-cli
+sudo npm install -g hexo-cli --no-optional
 
 hexo init ~/blog
 hexo init ~/techblog

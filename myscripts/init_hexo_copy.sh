@@ -1,10 +1,19 @@
-srcD=/home/pi/OneDrive/techblog
-dstD=/home/pi/techblogcp
+echo "SOURCE BLOG PATH:"
+echo  $BLOG
+
+echo "SOURCE TECH BLOG PATH:"
+echo $TECH_BLOG
+
+blogdst=~/blog
+techblogdst=~/techblog
 
 override="scaffolds source themes _config.yml package.json package-lock.json"
 
 for x in $override
   do
-  rm -r $dstD/$x
-  ln -s $srcD/$x $dstD
+  rm -r $blogdst/$x
+  ln -s $BLOG/$x $blogdst
+
+  rm -r $techblogdst/$x
+  ln -s $TECH_BLOG/$x $techblogdst
   done

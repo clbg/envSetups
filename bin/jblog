@@ -1,1 +1,5 @@
+cd ~/jblog/
+jekyll build
+
+
 rsync -r ~/jblog/_site/ root@chengpeng.space:/var/www/html/blog/

@@ -7,3 +7,8 @@ Host space
 	HostName chengpeng.space
 	User root
 
+
+Host DO
+	HostName do.chengpeng.space
+	User root
+

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-hexo clean  --cwd ~/blog
-hexo g --cwd ~/blog
-
-rsync -r  ~/blog/public/ root@chengpeng.space:/var/www/html/blog/

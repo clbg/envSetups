@@ -98,3 +98,5 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/envSetups/shell_setup/env
 source ~/envSetups/shell_setup/aliases
+
+eval `ssh-agent -s`

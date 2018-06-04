@@ -14,7 +14,7 @@ server {
 	ssl_certificate /etc/letsencrypt/live/chengpeng.space/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/chengpeng.space/privkey.pem;
 
-	root /var/www/html/files;
+	root /var/www/files/;
 
 
 	charset utf-8; # 避免中文乱码

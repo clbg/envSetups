@@ -12,3 +12,14 @@ Host do
 	HostName do.chengpeng.space
 	User root
 
+Host a
+	HostName a.buaadml.info
+	User pengcheng
+
+Host b
+	HostName b.buaadml.info
+	User pengcheng
+
+Host c
+	HostName c.buaadml.info
+	User pengcheng

@@ -13,13 +13,13 @@ Host do
 	User root
 
 Host a
-	HostName a.buaadml.info
+	HostName anna.buaadml.info
 	User pengcheng
 
 Host b
-	HostName b.buaadml.info
+	HostName betty.buaadml.info
 	User pengcheng
 
 Host c
-	HostName c.buaadml.info
+	HostName carol.buaadml.info
 	User pengcheng

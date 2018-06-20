@@ -1,6 +1,7 @@
 Host l
 	HostName buaadml.info
 	User pengcheng
+	IdentityFile ~/.ssh/id_rsa2
 
 
 Host space

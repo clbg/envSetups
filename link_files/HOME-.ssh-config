@@ -16,11 +16,14 @@ Host do
 Host a
 	HostName anna.buaadml.info
 	User pengcheng
+	IdentityFile ~/.ssh/id_rsa2
 
 Host b
 	HostName betty.buaadml.info
 	User pengcheng
+	IdentityFile ~/.ssh/id_rsa2
 
 Host c
 	HostName carol.buaadml.info
 	User pengcheng
+	IdentityFile ~/.ssh/id_rsa2

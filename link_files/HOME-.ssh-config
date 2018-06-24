@@ -24,6 +24,6 @@ Host b
 	IdentityFile ~/.ssh/id_rsa2
 
 Host c
-	HostName carol.buaadml.info
+	HostName coral.buaadml.info
 	User pengcheng
 	IdentityFile ~/.ssh/id_rsa2

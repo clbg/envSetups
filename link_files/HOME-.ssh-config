@@ -27,3 +27,18 @@ Host c
 	HostName coral.buaadml.info
 	User pengcheng
 	IdentityFile ~/.ssh/id_rsa2
+
+
+Host da
+	HostName anna.buaadml.info
+	User dml_401
+	IdentityFile ~/.ssh/id_rsa2
+
+Host db
+	HostName betty.buaadml.info
+	User dml_401
+	IdentityFile ~/.ssh/id_rsa2
+Host dc
+	HostName coral.buaadml.info
+	User dml_401
+	IdentityFile ~/.ssh/id_rsa2

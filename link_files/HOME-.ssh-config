@@ -4,6 +4,11 @@ Host l
 	IdentityFile ~/.ssh/id_rsa2
 
 
+Host dl
+	HostName buaadml.info
+	User dml_401
+	IdentityFile ~/.ssh/id_rsa2
+
 Host space
 	HostName chengpeng.space
 	User root

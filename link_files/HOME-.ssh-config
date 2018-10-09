@@ -3,6 +3,10 @@ Host l
 	User pengcheng
 	IdentityFile ~/.ssh/id_rsa2
 
+Host l6
+	HostName 6.buaadml.info
+	User pengcheng
+	IdentityFile ~/.ssh/id_rsa2
 
 Host dl
 	HostName buaadml.info
@@ -32,6 +36,22 @@ Host c
 	HostName coral.buaadml.info
 	User pengcheng
 	IdentityFile ~/.ssh/id_rsa2
+
+Host a6
+	HostName anna6.buaadml.info
+	User pengcheng
+	IdentityFile ~/.ssh/id_rsa2
+
+Host b6
+	HostName betty6.buaadml.info
+	User pengcheng
+	IdentityFile ~/.ssh/id_rsa2
+
+Host c6
+	HostName coral6.buaadml.info
+	User pengcheng
+	IdentityFile ~/.ssh/id_rsa2
+
 
 
 Host da

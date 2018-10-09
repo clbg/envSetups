@@ -1,8 +1,15 @@
 server {
+    if ($host = file.chengpeng.space) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
 	listen 80;
 	listen [::]:80;
 	server_name file.chengpeng.space file6.chengpeng.space;
 	return 301 https://$server_name$request_uri;
+
+
 }
 
 
@@ -11,21 +18,22 @@ server {
         server_name file.chengpeng.space file6.chengpeng.space;
 	ssl on;
 	listen 443;
-	ssl_certificate /etc/letsencrypt/live/chengpeng.space/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/chengpeng.space/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/chengpeng.space/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/chengpeng.space/privkey.pem; # managed by Certbot
 
 	root /var/www/files/;
 
 
-	charset utf-8; # 避免中文乱码
+	charset utf-8; 
 	index index.html index.htm index.nginx-debian.html;
 	location / {
-        	autoindex on; # 索引
-	        autoindex_exact_size off; # 显示文件大小
-	        autoindex_localtime on; # 显示文件时间
-		add_before_body /.autoindex/header.html;
-		add_after_body /.autoindex/footer.html;
+        	autoindex on; 
+	        autoindex_exact_size off; 
+	        autoindex_localtime on; 
+		#add_before_body /.autoindex/header.html;
+		#add_after_body /.autoindex/footer.html;
     	}
+
 
 
 }

@@ -1,3 +1,9 @@
+Host k
+	HostName 172.17.0.2
+	User root
+	IdentityFile ~/.ssh/id_rsa
+
+
 Host l
 	HostName buaadml.info
 	User pengcheng

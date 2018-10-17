@@ -73,3 +73,11 @@ Host dc
 	HostName coral.buaadml.info
 	User dml_401
 	IdentityFile ~/.ssh/id_rsa2
+
+
+
+Host ali
+	HostName ali.chengpeng.space
+	User root
+	IdentityFile ~/.ssh/id_rsa
+	

@@ -1,18 +1,16 @@
 #!/usr/bin/env bash
 
 check_is_arch(){
-	local n = exe "cat/etc/issue" | sed -n "/Arch/p" | wc -l
-	if n==1; then
-		return 1
-	else
+	echo "checking if your system is Arch"
+	local n=$(exe "cat /etc/issue" | sed -n "/Arch/p" | wc -l)
+	if [ $n == 1 ]; then
+		echo "fond arch in /etc/issue"
 		return 0
+	else
+		echo "not fond arch in /etc/issu"
+		return 1
 	fi
 }
-
-
-	
-
-
 
 check_sys(){
     local checkType=$1
@@ -24,22 +22,22 @@ check_sys(){
     if [[ -f /etc/redhat-release ]]; then
         release="centos"
         systemPackage="yum"
+    elif  check_is_arch ;then
+	echo "your system is arch!, using pacman!"
+        release="arch"
+        systemPackage="pacman"
     elif grep -Eqi "debian|raspbian" /etc/issue; then
         release="debian"
         systemPackage="apt"
     elif grep -Eqi "ubuntu" /etc/issue; then
         release="ubuntu"
         systemPackage="apt"
-#    elif cat /etc/issue | sed -n "/Arch/p" | wc -l " ; then
-    elif check_is_arch ;then
-        release="arch"
-        systemPackage="pacman"
     elif grep -Eqi "centos|red hat|redhat" /etc/issue; then
         release="centos"
         systemPackage="yum"
     elif grep -Eqi "debian|raspbian" /proc/version; then
         release="debian"
-        systemPackage="apt"
+       systemPackage="apt"
     elif grep -Eqi "ubuntu" /proc/version; then
         release="ubuntu"
         systemPackage="apt"
@@ -75,7 +73,8 @@ exe(){
 
 update_source(){
 	if check_sys sysRelease arch; then
-		exe "sed '1 iServer = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' -i /etc/pacman.d/mirrorlist"
+		#todo sed multiple times ?
+		exe `sed '1 iServer = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' -i /etc/pacman.d/mirrorlist `
 		exe "pacman -Syu --noconfirm"
 		
 	elif check_sys packageManager apt; then
@@ -101,9 +100,15 @@ clone_env(){
 	git clone https://github.com/pengchengbuaa/envSetups.git
 }
 
+echo "111111 updating sorce"
 update_source
+echo "222222 installing software"
 install_soft
+echo "333333 cloneing envsetup"
 clone_env
 
+
+echo "444444 installing zsh"
 sh ~/envSetups/linuxSetup/shellSetup/ohmyzsh-install
+echo "555555 copying linkfiles"
 sh ~/envSetups/linuxSetup/linkFiles/link.sh

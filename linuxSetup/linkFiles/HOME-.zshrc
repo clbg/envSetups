@@ -96,8 +96,8 @@ source $ZSH/oh-my-zsh.sh
 
 
 
-source ~/envSetups/shell_setup/env
-source ~/envSetups/shell_setup/aliases
+source ~/envSetups/linuxSetup/shellSetup/env
+source ~/envSetups/linuxSetup/shellSetup/aliases
 if [[ ! -f "~/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi

@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
+check_is_arch(){
+	local n = exe "cat/etc/issue" | sed -n "/Arch/p" | wc -l
+	if n==1; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+
+	
+
+
+
 check_sys(){
     local checkType=$1
     local value=$2
@@ -16,7 +30,8 @@ check_sys(){
     elif grep -Eqi "ubuntu" /etc/issue; then
         release="ubuntu"
         systemPackage="apt"
-    elif grep -Eqi "arch" /etc/issue; then
+#    elif cat /etc/issue | sed -n "/Arch/p" | wc -l " ; then
+    elif check_is_arch ;then
         release="arch"
         systemPackage="pacman"
     elif grep -Eqi "centos|red hat|redhat" /etc/issue; then

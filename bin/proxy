@@ -1,0 +1,2 @@
+export http_proxy=http://localhost:1080
+export https_proxy=http://localhost:1080

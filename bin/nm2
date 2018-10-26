@@ -1,0 +1,2 @@
+ xrandr --output DP1 --off
+feh --bg-center  ~/bg.jpg

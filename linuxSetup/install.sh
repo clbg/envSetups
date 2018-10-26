@@ -74,7 +74,7 @@ update_source(){
 
 install_soft(){
 	if check_sys packageManager pacman; then
-		exe "pacman -S tmux vim git openssh --noconfirm"
+		exe "pacman -S tmux vim git zsh  openssh --noconfirm"
 	elif check_sys packageManager apt; then
 	    	echo 'install apt'
 	fi

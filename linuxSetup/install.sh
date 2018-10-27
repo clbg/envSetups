@@ -103,7 +103,11 @@ install_soft(){
 
 clone_env(){
 	cd ~
-	git clone https://github.com/pengchengbuaa/envSetups.git
+	if  [ -e envSetups ]; then
+		git -C envSetups pull
+	else
+		git clone https://github.com/pengchengbuaa/envSetups.git
+	fi
 }
 
 echo "111111 updating sorce"

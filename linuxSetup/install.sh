@@ -26,6 +26,10 @@ check_sys(){
 	echo "your system is arch!, using pacman!"
         release="arch"
         systemPackage="pacman"
+    elif grep -Eqi "Kali GNU" /etc/issue; then	    
+	echo "your system is kali gnu, using apt!"
+	release="kali"
+	systemPackage="apt"
     elif grep -Eqi "debian|raspbian" /etc/issue; then
         release="debian"
         systemPackage="apt"
@@ -76,7 +80,9 @@ update_source(){
 		#todo sed multiple times ?
 		exe `sed '1 iServer = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' -i /etc/pacman.d/mirrorlist `
 		exe "pacman -Syu --noconfirm"
-		
+	elif check_sys sysRelease kali; then
+		exe `sed -e "s/http\.kali\.org/mirrors.neusoft.edu.cn/g" -i /etc/apt/sources.list `
+		exe "apt update "
 	elif check_sys packageManager apt; then
 		if  check_sys  sysRelease ubuntu; then
 			echo 'update your source yourself'
@@ -90,7 +96,7 @@ install_soft(){
 	if check_sys packageManager pacman; then
 		exe "pacman -S tmux vim git zsh  openssh --noconfirm"
 	elif check_sys packageManager apt; then
-	    	echo 'install apt'
+	    	exe 'apt -y install tmux vim git zsh ssh curl wget '
 	fi
 }
 

@@ -92,7 +92,7 @@ install_soft(){
 	if check_sys packageManager pacman; then
 		exe "pacman -S tmux vim git zsh  openssh --noconfirm"
 	elif check_sys packageManager apt; then
-	    	exe 'apt -y install tmux vim git zsh ssh curl wget '
+	    	exe 'apt -y install tmux vim git zsh wireless-tools ssh curl wget '
 	fi
 }
 

@@ -7,7 +7,7 @@ check_is_arch(){
 		echo "fond arch in /etc/issue"
 		return 0
 	else
-		echo "not fond arch in /etc/issu"
+		echo "not fond arch in /etc/issue"
 		return 1
 	fi
 }
@@ -30,11 +30,12 @@ check_sys(){
 	echo "your system is kali gnu, using apt!"
 	release="kali"
 	systemPackage="apt"
+    elif grep -Eqi "ubuntu" /etc/issue; then
+	echo "your system is ubuntu , using apt!"
+        release="ubuntu"
+        systemPackage="apt"
     elif grep -Eqi "debian|raspbian" /etc/issue; then
         release="debian"
-        systemPackage="apt"
-    elif grep -Eqi "ubuntu" /etc/issue; then
-        release="ubuntu"
         systemPackage="apt"
     elif grep -Eqi "centos|red hat|redhat" /etc/issue; then
         release="centos"
@@ -42,9 +43,6 @@ check_sys(){
     elif grep -Eqi "debian|raspbian" /proc/version; then
         release="debian"
        systemPackage="apt"
-    elif grep -Eqi "ubuntu" /proc/version; then
-        release="ubuntu"
-        systemPackage="apt"
     elif grep -Eqi "centos|red hat|redhat" /proc/version; then
         release="centos"
         systemPackage="yum"
@@ -83,11 +81,9 @@ update_source(){
 	elif check_sys sysRelease kali; then
 		exe `sed -e "s/http\.kali\.org/mirrors.neusoft.edu.cn/g" -i /etc/apt/sources.list `
 		exe "apt update "
-	elif check_sys packageManager apt; then
-		if  check_sys  sysRelease ubuntu; then
-			echo 'update your source yourself'
-		fi
-		exe "sudo apt update"
+	elif check_sys sysRelease ubuntu ; then
+		exe `sed -e "s/archive\.ubuntu\.com/mirrors.tuna.tsinghua.edu.cn/g" -i /etc/apt/sources.list `
+		exe "apt update"
 	fi
 
 }

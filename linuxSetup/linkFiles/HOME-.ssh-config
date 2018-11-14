@@ -1,20 +1,23 @@
-Host k
-	HostName 172.17.0.2
-	User root
-	IdentityFile ~/.ssh/id_rsa
-
-
-Host l
+Host g
 	HostName buaadml.info
 	User pengcheng
 	IdentityFile ~/.ssh/id_rsa2
 
-Host l6
+Host g6
 	HostName 6.buaadml.info
 	User pengcheng
 	IdentityFile ~/.ssh/id_rsa2
 
-Host dl
+Host u
+    HostName uranus.buaadml.info
+    User root
+Host u6
+    HostName uranus6.buaadml.info
+    User root
+
+
+
+Host dg
 	HostName buaadml.info
 	User dml_401
 	IdentityFile ~/.ssh/id_rsa2
@@ -79,5 +82,11 @@ Host dc
 Host ali
 	HostName ali.chengpeng.space
 	User root
+	IdentityFile ~/.ssh/id_rsa
+
+Host gp
+	HostName ali.chengpeng.space
+    Port 2223
+	User pengcheng
 	IdentityFile ~/.ssh/id_rsa
 	

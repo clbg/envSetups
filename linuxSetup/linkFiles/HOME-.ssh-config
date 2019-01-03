@@ -1,12 +1,12 @@
 Host g
 	HostName buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host g6
 	HostName 6.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host u
     HostName uranus.buaadml.info
@@ -20,7 +20,7 @@ Host u6
 Host dg
 	HostName buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host space
 	HostName chengpeng.space
@@ -34,64 +34,64 @@ Host do
 Host a
 	HostName anna.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host b
 	HostName betty.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host c
 	HostName coral.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host a6
 	HostName anna6.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host b6
 	HostName betty6.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host c6
 	HostName coral6.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 
 
 Host da
 	HostName anna.buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host db
 	HostName betty.buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 Host dc
 	HostName coral.buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 Host dd
 	HostName dora.buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/id_rsa2
+	IdentityFile ~/.ssh/key
 
 
 
 Host ali
 	HostName ali.chengpeng.space
 	User root
-	IdentityFile ~/.ssh/id_rsa
+	IdentityFile ~/.ssh/key
 
 Host gp
 	HostName ali.chengpeng.space
     Port 2223
 	User pengcheng
-	IdentityFile ~/.ssh/id_rsa
+	IdentityFile ~/.ssh/key
 	

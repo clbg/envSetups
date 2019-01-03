@@ -13,3 +13,13 @@ ln -sf $HOME/envSetups/linuxSetup/linkFiles/HOME-.config-pip-pip.conf $HOME/.con
 
 echo "linking home/bin"
 ln -sf $HOME/envSetups/linuxSetup/bin $HOME/
+
+echo "adding pulic key to authorized keys"
+
+f=$(cat key.pub)
+if ! grep -qi "$f" $HOME/.ssh/authorized_keys; then
+	cat key.pub >> $HOME/.ssh/authorized_keys
+	echo "appending key"
+else 
+	echo "key exists continue"
+fi

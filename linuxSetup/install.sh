@@ -74,6 +74,7 @@ exe(){
 
 
 update_source(){
+    # todo update debian??
 	if check_sys sysRelease arch; then
 		#todo sed multiple times ?
 		exe `sed '1 iServer = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' -i /etc/pacman.d/mirrorlist `
@@ -92,7 +93,7 @@ install_soft(){
 	if check_sys packageManager pacman; then
 		exe "pacman -S tmux vim git zsh  openssh --noconfirm"
 	elif check_sys packageManager apt; then
-	    	exe 'apt -y install tmux vim git zsh wireless-tools ssh curl wget '
+	    	exe 'apt -y install tmux vim git zsh wireless-tools openssh-server curl wget '
 	fi
 }
 
@@ -106,15 +107,16 @@ clone_env(){
 	fi
 }
 
-echo "111111 updating sorce"
+echo "step1: updating sorce"
 update_source
-echo "222222 installing software"
+echo "step2: installing software"
 install_soft
-echo "333333 cloneing envsetup"
+echo "step3: cloneing envsetup"
 clone_env
 
 
-echo "444444 installing zsh"
+echo "step4: installing zsh"
 sh ~/envSetups/linuxSetup/shellSetup/ohmyzsh-install
-echo "555555 copying linkfiles"
+echo "step5: copying linkfiles"
 sh ~/envSetups/linuxSetup/linkFiles/link.sh
+echo "installation done! good luck && bye"

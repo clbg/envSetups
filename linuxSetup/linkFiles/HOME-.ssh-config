@@ -77,6 +77,11 @@ Host dc
 	User dml_401
 	IdentityFile ~/.ssh/id_rsa2
 
+Host dd
+	HostName dora.buaadml.info
+	User dml_401
+	IdentityFile ~/.ssh/id_rsa2
+
 
 
 Host ali

@@ -76,8 +76,8 @@ exe(){
 update_source(){
     # todo update debian??
 	if check_sys sysRelease arch; then
-		#todo sed multiple times ?
-		exe `sed '1 iServer = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' -i /etc/pacman.d/mirrorlist `
+		#todo  don't run properly
+		#exe sed '1 iServer = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' -i /etc/pacman.d/mirrorlist 
 		exe "pacman -Syu --noconfirm"
 	elif check_sys sysRelease kali; then
 		exe `sed -e "s/http\.kali\.org/mirrors.neusoft.edu.cn/g" -i /etc/apt/sources.list `

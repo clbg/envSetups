@@ -18,7 +18,7 @@ echo "adding pulic key to authorized keys"
 
 f=$(cat key.pub)
 if ! grep -qi "$f" $HOME/.ssh/authorized_keys; then
-	cat key.pub >> $HOME/.ssh/authorized_keys
+	cat $HOME/envSetups/linuxSetup/linkFiles/key.pub >> $HOME/.ssh/authorized_keys
 	echo "appending key"
 else 
 	echo "key exists continue"

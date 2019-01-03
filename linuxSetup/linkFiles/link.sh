@@ -11,5 +11,5 @@ mkdir -p $HOME/.config/pip
 echo "linking .config/pip/pip.conf"
 ln -sf $HOME/envSetups/linuxSetup/linkFiles/HOME-.config-pip-pip.conf $HOME/.config/pip/pip.conf
 
-
-ln -sf $HOME/envSetups/linuxSetup/bin $HOME/bin
+echo "linking home/bin"
+ln -sf $HOME/envSetups/linuxSetup/bin $HOME/

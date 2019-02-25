@@ -2,7 +2,7 @@
 
 check_is_arch(){
 	echo "checking if your system is Arch"
-	local n=$(exe "cat /etc/issue" | sed -n "/Arch/p" | wc -l)
+	local n=$(exe "cat /etc/issue" | sed -n "/Manjaro\|Arch/p" | wc -l)
 	if [ $n == 1 ]; then
 		echo "fond arch in /etc/issue"
 		return 0

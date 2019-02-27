@@ -1,3 +1,2 @@
-xrandr --output DP1  --mode 3840x2160 --rate 60  --auto   --above eDP1
-
+xrandr --output DP1 --primary --mode 3840x2160 --auto  --output eDP1 --auto --below DP1
 feh --bg-center  ~/bg.jpg

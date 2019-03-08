@@ -8,7 +8,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
+new_window pixel 2
 new_float normal
 
 # Hide borders
@@ -63,7 +63,7 @@ bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+bindsym $mod+Ctrl+t exec --no-startup-id compton --inactive-dim 0.1 -f -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
@@ -273,7 +273,7 @@ bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nitrogen --restore; sleep 1; compton --inactive-dim 0.1 -f -b
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -284,7 +284,7 @@ exec --no-startup-id fcitx
 
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
+#exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
@@ -324,9 +324,10 @@ set_from_resource $term_color15    color15
 
 
 set $sysback #1E1E1E
-
+set $sysborder #3c3c3c
 set $black  #000000
 set $vsblue #007ACC
+set $vsorange #CC6633
 set $white  #FFFFFF
 set $unseback #333333
 set $seback #007ACC
@@ -357,12 +358,12 @@ bar {
 
 #                      border  backgr. text
         #focused_workspace  #F9FAF9 #16a085 #292F34
-        focused_workspace  $vsblue $vsblue $white
+        focused_workspace  $sysborder $vsblue $white
         active_workspace   #595B5B #353836 #FDF6E3
         inactive_workspace #595B5B #222D31 #EEE8D5
         #binding_mode       #16a085 #2C2C2C #F9FAF9
         binding_mode       #16a085 #333333 #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
+        urgent_workspace   $vsorange $vsorange $white
     }
 }
 
@@ -379,7 +380,7 @@ bindsym $mod+m bar mode toggle
   #client.placeholder      #000000 #0c0c0c #ffffff #000000 
   #client.background       #2B2C2B
 # --------------------------redefine -----------------------------------
-  client.focused          #556064 $vsblue $white  $vsblue
+  client.focused          $sysborder $sysborder  $white $sysborder
   client.focused_inactive #2F3D44 $unseback $unsetext #454948
   client.unfocused        #2F3D44 $unseback $unsetext #454948
   client.urgent           #CB4B16 #FDF6E3 $white #268BD2

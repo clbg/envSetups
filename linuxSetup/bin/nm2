@@ -1,2 +1,4 @@
  xrandr --output DP1 --off
-feh --bg-center  ~/bg.jpg
+#feh --bg-center  ~/bg.jpg
+sleep 0.4
+nitrogen --restore

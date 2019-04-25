@@ -7,6 +7,11 @@ Host g
 	HostName buaadml.info
 	User pengcheng
 	IdentityFile ~/.ssh/key
+Host cg
+	HostName chaos.buaadml.info
+	User  dml_401
+	IdentityFile ~/.ssh/key
+
 
 Host g6
 	HostName 6.buaadml.info
@@ -51,21 +56,6 @@ Host c
 	User pengcheng
 	IdentityFile ~/.ssh/key
 
-Host a6
-	HostName anna6.buaadml.info
-	User pengcheng
-	IdentityFile ~/.ssh/key
-
-Host b6
-	HostName betty6.buaadml.info
-	User pengcheng
-	IdentityFile ~/.ssh/key
-
-Host c6
-	HostName coral6.buaadml.info
-	User pengcheng
-	IdentityFile ~/.ssh/key
-
 
 
 Host da
@@ -99,4 +89,11 @@ Host gp
     Port 2223
 	User pengcheng
 	IdentityFile ~/.ssh/key
-	
+
+#for get servers
+Host gitea.buaadml.info
+    HostName gitea.buaadml.info
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/key
+
+

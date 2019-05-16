@@ -61,6 +61,7 @@ ZSH_THEME="re5et"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  autojump
 )
 
 source $ZSH/oh-my-zsh.sh

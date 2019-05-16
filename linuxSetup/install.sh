@@ -91,9 +91,9 @@ update_source(){
 
 install_soft(){
 	if check_sys packageManager pacman; then
-		exe "pacman -S tmux vim git zsh  openssh --noconfirm"
+		exe "pacman -S tmux vim git zsh  autojump openssh --noconfirm"
 	elif check_sys packageManager apt; then
-	    	exe 'apt -y install tmux vim git zsh wireless-tools openssh-server curl wget '
+	    	exe 'apt -y install tmux vim git zsh wireless-tools autojump  openssh-server curl wget '
 	fi
 }
 

@@ -12,9 +12,9 @@ function login(){
 
 function networkAndFtp()  {
     #连接超时时间  
-    timeout=500
+    timeout=3
     #最大等待时间
-    maxwait=1000
+    maxwait=10
 
     #目标网站  
 

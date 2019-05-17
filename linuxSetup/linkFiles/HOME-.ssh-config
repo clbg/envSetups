@@ -1,36 +1,28 @@
 Host st
 	HostName 192.168.193.1
 	User pengcheng
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 
 Host g
 	HostName buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 Host cg
 	HostName chaos.buaadml.info
 	User  dml_401
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 
 
 Host g6
 	HostName 6.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/key
-
-Host u
-    HostName uranus.buaadml.info
-    User root
-Host u6
-    HostName uranus6.buaadml.info
-    User root
-
+	IdentityFile ~/.ssh/id_rsa
 
 
 Host dg
 	HostName buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 
 Host space
 	HostName chengpeng.space
@@ -44,56 +36,50 @@ Host do
 Host a
 	HostName anna.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 
 Host b
 	HostName betty.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 
 Host c
 	HostName coral.buaadml.info
 	User pengcheng
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 
 
 
 Host da
 	HostName anna.buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 
 Host db
 	HostName betty.buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 Host dc
 	HostName coral.buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 
 Host dd
 	HostName dora.buaadml.info
 	User dml_401
-	IdentityFile ~/.ssh/key
+	IdentityFile ~/.ssh/id_rsa
 
+#gcp server
+Host hk
+	HostName gcphk.chengpeng.space
+	User pengcheng_is_handsome
+	IdentityFile ~/.ssh/id_rsa
 
-
-Host ali
-	HostName ali.chengpeng.space
-	User root
-	IdentityFile ~/.ssh/key
-
-Host gp
-	HostName ali.chengpeng.space
-    Port 2223
-	User pengcheng
-	IdentityFile ~/.ssh/key
 
 #for get servers
 Host gitea.buaadml.info
     HostName gitea.buaadml.info
     PreferredAuthentications publickey
-    IdentityFile ~/.ssh/key
+    IdentityFile ~/.ssh/id_rsa
 
 

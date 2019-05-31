@@ -1,3 +1,38 @@
+Host sy 
+	Hostname wh-a-internal.brainpp.cn
+	User Shunyi.pengcheng02.brw
+	IdentityFile ~/.ssh/id_rsa
+	ForwardAgent yes
+	ForwardX11 yes
+	ForwardX11Trusted yes
+	#LocalForward 8888 localhost:8888
+	#DynamicForward 7071
+Host syo 
+	Hostname wh-a.brainpp.cn
+	User Shunyi.pengcheng02.brw
+	#IdentityFile ~/.ssh/id_rsa
+	ForwardAgent yes
+	ForwardX11 yes
+	ForwardX11Trusted yes
+	DynamicForward 7071
+
+Host tso
+	Hostname wh-a.brainpp.cn
+	User Tangshan.pengcheng02.brw
+	IdentityFile ~/.ssh/id_rsa
+
+
+
+Host ft
+	Hostname wh-a-internal.brainpp.cn
+	User Fengtai.pengcheng02.ws2
+	#IdentityFile ~/.ssh/id_rsa
+	ForwardAgent yes
+	ForwardX11 yes
+	ForwardX11Trusted yes
+	DynamicForward 7071
+
+
 Host st
 	HostName 192.168.193.1
 	User pengcheng

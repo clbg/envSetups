@@ -107,7 +107,7 @@ Host dd
 #gcp server
 Host hk
 	HostName gcphk.chengpeng.space
-	User pengcheng_is_handsome
+	User pengcheng
 	IdentityFile ~/.ssh/id_rsa
 
 

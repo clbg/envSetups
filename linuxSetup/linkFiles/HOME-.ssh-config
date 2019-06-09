@@ -67,6 +67,10 @@ Host space
 Host do
 	HostName do.chengpeng.space
 	User root
+Host do6
+	HostName do6.chengpeng.space
+	User root
+
 
 Host a
 	HostName anna.buaadml.info
@@ -80,6 +84,16 @@ Host b
 
 Host c
 	HostName coral.buaadml.info
+	User pengcheng
+	IdentityFile ~/.ssh/id_rsa
+
+Host d
+	HostName danny.buaadml.info
+	User pengcheng
+	IdentityFile ~/.ssh/id_rsa
+
+Host e
+	HostName ella.buaadml.info
 	User pengcheng
 	IdentityFile ~/.ssh/id_rsa
 
@@ -98,15 +112,29 @@ Host dc
 	HostName coral.buaadml.info
 	User dml_401
 	IdentityFile ~/.ssh/id_rsa
-
 Host dd
+	HostName danny.buaadml.info
+	User dml_401
+	IdentityFile ~/.ssh/id_rsa
+
+Host de
+	HostName ella.buaadml.info
+	User dml_401
+	IdentityFile ~/.ssh/id_rsa
+
+
+
+
+
+
+Host dora
 	HostName dora.buaadml.info
 	User dml_401
 	IdentityFile ~/.ssh/id_rsa
 
 #gcp server
-Host hk
-	HostName gcphk.chengpeng.space
+Host tw
+	HostName gcptw.chengpeng.space
 	User pengcheng
 	IdentityFile ~/.ssh/id_rsa
 

@@ -20,6 +20,8 @@ Host tso
 	Hostname wh-a.brainpp.cn
 	User Tangshan.pengcheng02.brw
 	IdentityFile ~/.ssh/id_rsa
+	LocalForward 8888 localhost:8888
+	LocalForward 6006 localhost:6006
 
 
 
@@ -137,6 +139,14 @@ Host tw
 	HostName gcptw.chengpeng.space
 	User pengcheng
 	IdentityFile ~/.ssh/id_rsa
+
+Host ali
+	HostName ali.chengpeng.space
+	User root
+	IdentityFile ~/.ssh/id_rsa
+
+
+
 
 
 #for get servers

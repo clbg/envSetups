@@ -2,6 +2,10 @@ Host st
 	HostName 192.168.193.1
 	User pengcheng
 	DynamicForward 127.0.0.1:1081
+Host gst
+	HostName buaadml.info
+	User pengcheng
+        ProxyCommand ssh st -W %h:%p
 
 Host g
 	HostName buaadml.info

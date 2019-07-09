@@ -1,3 +1,5 @@
+Include ~/.ssh/config_local
+
 Host st
 	HostName 192.168.193.1
 	User pengcheng
@@ -5,7 +7,7 @@ Host st
 Host gst
 	HostName buaadml.info
 	User pengcheng
-        ProxyCommand ssh st -W %h:%p
+        ProxyCommand ssh pengcheng@192.168.193.1  -W %h:%p
 
 Host g
 	HostName buaadml.info

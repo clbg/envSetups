@@ -102,5 +102,6 @@ source ~/envSetups/linuxSetup/shellSetup/aliases
 if [[  -f "$HOME/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi
+export GOPATH=$HOME/go
 
 eval `ssh-agent -s`

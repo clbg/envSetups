@@ -102,6 +102,9 @@ source ~/envSetups/linuxSetup/shellSetup/aliases
 if [[  -f "$HOME/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi
+#Golang
 export GOPATH=$HOME/go
-
+#GPG for git commit
+export GPG_TTY=$(tty)
+#for ssh add
 eval `ssh-agent -s`

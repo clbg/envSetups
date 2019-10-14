@@ -108,3 +108,12 @@ export GOPATH=$HOME/go
 export GPG_TTY=$(tty)
 #for ssh add
 eval `ssh-agent -s`
+
+#time 
+TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
+'avg shared (code):         %X KB'$'\n'\
+'avg unshared (data/stack): %D KB'$'\n'\
+'total (sum):               %K KB'$'\n'\
+'max memory:                %M KB'$'\n'\
+'page faults from disk:     %F'$'\n'\
+'other page faults:         %R'

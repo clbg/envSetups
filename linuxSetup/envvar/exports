@@ -1,3 +1,8 @@
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
+
 export PATH=$HOME/bin:$HOME/bin_local:/usr/local/bin:$PATH
 
 #golang 

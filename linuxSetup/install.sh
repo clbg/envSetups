@@ -68,10 +68,10 @@ update_source(){
 
 install_soft(){
     log "Installing softwares"
-    common_soft_list="tmux vim git zsh autojump openssh curl wget "
+    common_soft_list="tmux vim git zsh autojump curl wget "
     
 if [[ $PKG_M == $PKG_M_PACMAN ]]; then
-        exe "pacman -S $common_soft_list --noconfirm"
+        exe "pacman -S $common_soft_list openssh  --noconfirm"
     elif [[ $PKG_M == $PKG_M_APT ]]; then
         exe "apt -y install $common_soft_list openssh-server curl wget"
     fi

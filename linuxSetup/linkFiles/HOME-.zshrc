@@ -1,5 +1,4 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/bin_local:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -7,8 +6,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="random"
 ZSH_THEME="re5et"
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -67,7 +64,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -95,25 +91,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-
-source ~/envSetups/linuxSetup/shellSetup/env
-source ~/envSetups/linuxSetup/shellSetup/aliases
+#Env Vars
+source ~/envSetups/linuxSetup/envvar/aliases
+source ~/envSetups/linuxSetup/envvar/exports
 if [[  -f "$HOME/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi
-#Golang
-export GOPATH=$HOME/go
-#GPG for git commit
-export GPG_TTY=$(tty)
-#for ssh add
+
 eval `ssh-agent -s`
 
-#time 
-TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
-'avg shared (code):         %X KB'$'\n'\
-'avg unshared (data/stack): %D KB'$'\n'\
-'total (sum):               %K KB'$'\n'\
-'max memory:                %M KB'$'\n'\
-'page faults from disk:     %F'$'\n'\
-'other page faults:         %R'

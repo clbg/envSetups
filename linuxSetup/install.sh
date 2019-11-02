@@ -1,122 +1,117 @@
-#!/usr/bin/env bash
+DIST=
+PKG_M=
 
-check_is_arch(){
-	echo "checking if your system is Arch"
-	local n=$(exe "cat /etc/issue" | sed -n "/Manjaro\|Arch/p" | wc -l)
-	if [ $n == 1 ]; then
-		echo "fond arch in /etc/issue"
-		return 0
-	else
-		echo "not fond arch in /etc/issue"
-		return 1
-	fi
+DIST_ARCH="Arch"
+DIST_MACOS="MacOS"
+DIST_DEBIAN="Debain"
+DIST_CENTOS="CentOS"
+DIST_KALI="Kali"
+DIST_UBUNTU="Ubuntu"
+
+PKG_M_APT="apt"
+PKG_M_PACMAN="pacman"
+PKG_M_YUM="yum"
+
+log(){
+    RED='\033[0;31m'
+    GREEN='\033[0;32m'
+    NC='\033[0m' # No Color
+
+    echo -e "${GREEN}$1 ${NC}" 
 }
 
-check_sys(){
-    local checkType=$1
-    local value=$2
-
-    local release=''
-    local systemPackage=''
-
-    if [[ -f /etc/redhat-release ]]; then
-        release="centos"
-        systemPackage="yum"
-    elif  check_is_arch ;then
-	echo "your system is arch!, using pacman!"
-        release="arch"
-        systemPackage="pacman"
-    elif grep -Eqi "Kali GNU" /etc/issue; then	    
-	echo "your system is kali gnu, using apt!"
-	release="kali"
-	systemPackage="apt"
+set_sys_var(){
+    if  grep -Eqi "manjaro|Arch" /etc/issue ; then
+        DIST=$DIST_ARCH
+        PKG_M=$PKG_M_PACMAN
+        return 0
+    elif grep -Eqi "centos|red hat|redhat" /proc/version;  then
+        DIST=$DIST_CENTOS
+        PKG_M=$PKG_M_YUM
+        return 0
+    elif grep -Eqi "Kali GNU" /etc/issue; then      
+        DIST=$DIST_KALI
+        PKG_M=$PKG_M_APT
     elif grep -Eqi "ubuntu" /etc/issue; then
-	echo "your system is ubuntu , using apt!"
-        release="ubuntu"
-        systemPackage="apt"
+        DIST=$DIST_UBUNTU
+        PKG_M=$PKG_M_APT
     elif grep -Eqi "debian|raspbian" /etc/issue; then
-        release="debian"
-        systemPackage="apt"
-    elif grep -Eqi "centos|red hat|redhat" /etc/issue; then
-        release="centos"
-        systemPackage="yum"
-    elif grep -Eqi "debian|raspbian" /proc/version; then
-        release="debian"
-       systemPackage="apt"
-    elif grep -Eqi "centos|red hat|redhat" /proc/version; then
-        release="centos"
-        systemPackage="yum"
-    fi
-
-    if [[ "${checkType}" == "sysRelease" ]]; then
-        if [ "${value}" == "${release}" ]; then
-            return 0
-        else
-            return 1
-        fi
-    elif [[ "${checkType}" == "packageManager" ]]; then
-        if [ "${value}" == "${systemPackage}" ]; then
-            return 0
-        else
-            return 1
-        fi
+        DIST=$DIST_DEBIAN
+        PKG_M=$PKG_M_APT
     fi
 }
 
+check_arch(){
+    set_sys_var
+    log "Your system is $DIST"
+    log "Your package manager is $PKG_M"
+}
 
 exe(){
-	if [ `whoami` == 'root' ];then
-		$1
-	else
-		sudo $1
-	fi
+    if [ `whoami` == 'root' ];then
+        $1
+    else
+        sudo $1
+    fi
 }
 
-
 update_source(){
-    # todo update debian??
-	if check_sys sysRelease arch; then
-		#todo  don't run properly
-		#exe sed '1 iServer = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' -i /etc/pacman.d/mirrorlist 
-		exe "pacman -Syu --noconfirm"
-	elif check_sys sysRelease kali; then
-		exe `sed -e "s/http\.kali\.org/mirrors.neusoft.edu.cn/g" -i /etc/apt/sources.list `
-		exe "apt update "
-	elif check_sys sysRelease ubuntu ; then
-		exe `sed -e "s/archive\.ubuntu\.com/mirrors.tuna.tsinghua.edu.cn/g" -i /etc/apt/sources.list `
-		exe "apt update"
-	fi
-
+    log "Updating your source"
+    #todo macos and centos/rhel
+    if [[ $PKG_M == $PKG_M_PACMAN ]]; then
+        exe "pacman -Syu --noconfirm"
+    elif [[ $PKG_M == $PKG_M_APT ]]; then
+        exe "apt update "
+    fi
+    log "Updating done"
 }
 
 install_soft(){
-	if check_sys packageManager pacman; then
-		exe "pacman -S tmux vim git zsh  autojump openssh --noconfirm"
-	elif check_sys packageManager apt; then
-	    	exe 'apt -y install tmux vim git zsh wireless-tools autojump  openssh-server curl wget '
-	fi
+    log "Installing softwares"
+    common_soft_list="tmux vim git zsh autojump openssh curl wget "
+    
+if [[ $PKG_M == $PKG_M_PACMAN ]]; then
+        exe "pacman -S $common_soft_list --noconfirm"
+    elif [[ $PKG_M == $PKG_M_APT ]]; then
+        exe "apt -y install $common_soft_list openssh-server curl wget"
+    fi
+    log "Installing done"
 }
-
 
 clone_env(){
-	cd ~
-	if  [ -e envSetups ]; then
-		git -C envSetups pull
-	else
-		git clone https://github.com/pengchengbuaa/envSetups.git
-	fi
+    cd ~
+    if  [ -e envSetups ]; then
+        log "Pulling envSetup package"
+        git -C envSetups pull
+        log "Pulling done"
+    else
+        log "Cloning envSetup package"
+        git clone https://github.com/pengchengbuaa/envSetups.git
+        log "Cloning done"
+    fi
 }
 
-echo "step1: updating sorce"
+setup_zsh(){
+    log "Setting up ZSH"
+    log "Installing Oh my ZSH"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    log "Linking files"
+    sh ~/envSetups/linuxSetup/linkFiles/link.sh
+    log "Setting up ZSH done"
+}
+
+
+#Start of execute"
+log "Start env setup"
+
+check_arch
 update_source
-echo "step2: installing software"
 install_soft
-echo "step3: cloneing envsetup"
 clone_env
+setup_zsh
 
 
-echo "step4: installing zsh"
-sh ~/envSetups/linuxSetup/shellSetup/ohmyzsh-install
-echo "step5: copying linkfiles"
-sh ~/envSetups/linuxSetup/linkFiles/link.sh
-echo "installation done! good luck && bye"
+log "All Installation done! good luck && bye"
+
+
+

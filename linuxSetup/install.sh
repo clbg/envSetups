@@ -7,6 +7,7 @@ DIST_DEBIAN="Debain"
 DIST_CENTOS="CentOS"
 DIST_KALI="Kali"
 DIST_UBUNTU="Ubuntu"
+DIST_PVE="Proxmox"
 
 PKG_M_APT="apt"
 PKG_M_PACMAN="pacman"
@@ -37,6 +38,9 @@ set_sys_var(){
         PKG_M=$PKG_M_APT
     elif grep -Eqi "debian|raspbian" /etc/issue; then
         DIST=$DIST_DEBIAN
+        PKG_M=$PKG_M_APT
+    elif grep -Eqi "PVE" /proc/version; then
+        DIST=$DIST_PVE
         PKG_M=$PKG_M_APT
     fi
 }

@@ -97,6 +97,9 @@ Host dora
 Host hk
 	HostName gcphk.chengpeng.space
 	User pengcheng
+Host pve
+	HostName 192.168.193.5
+	User root
 
 Host ali
 	HostName ali.chengpeng.space

@@ -70,6 +70,8 @@ update_source(){
         exe "pacman -Syu --noconfirm"
     elif [[ $PKG_M == $PKG_M_APT ]]; then
         exe "apt update "
+    elif [[ $PKG_M == $PKG_M_YUM ]]; then
+	exe "yum update"
     fi
     log "Updating done"
 }
@@ -82,6 +84,8 @@ if [[ $PKG_M == $PKG_M_PACMAN ]]; then
         exe "pacman -S $common_soft_list openssh  --noconfirm"
     elif [[ $PKG_M == $PKG_M_APT ]]; then
         exe "apt -y install $common_soft_list openssh-server curl wget"
+    elif [[ $PKG_M == $PKG_M_YUM ]]; then
+	exe "yum -y install $common_soft_list openssh"
     fi
     log "Installing done"
 }

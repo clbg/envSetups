@@ -13,6 +13,9 @@ PKG_M_APT="apt"
 PKG_M_PACMAN="pacman"
 PKG_M_YUM="yum"
 
+
+AIRFLOW_WORKER=false
+
 log(){
     RED='\033[0;31m'
     GREEN='\033[0;32m'
@@ -105,8 +108,43 @@ setup_zsh(){
 }
 
 
-#Start of execute"
+user_create(){
+    log "Creating Users"
+    log "Creating airflow-worker"
+    exe "sudo useradd  airflow-worker -m"
+    ssh_dir="/home/airflow-worker/.ssh"
+    pub_key_path="$HOME/envSetups/linuxSetup/linkFiles/deploy.pub"
+    exe "mkdir $ssh_dir"
+    if ! grep -qi "$f" $ssh_dir/authorized_keys; then
+        cat $pub_key_path >> $ssh_dir/authorized_keys
+        echo "appending key"
+    else
+        echo "key exists continue"
+    fi
+    exe "chown -R airflow-worker:airflow-worker $ssh_dir"
+    exe "chmod 700  $ssh_dir"
+}
+
+while getopts 'w' OPTION; do
+  case "$OPTION" in
+    w)
+      echo "worker machine"
+      AIRFLOW_WORKER=true
+      ;;
+    ?)
+      echo "script usage: $(basename $0) [-w] " >&2
+      echo " -w  : install on airflow worker machine" >&2
+
+      exit 1
+      ;;
+  esac
+done
+shift "$(($OPTIND -1))"
+
 log "Start env setup"
+if [ "$AIRFLOW_WORKER" = true ] ; then
+    user_create
+fi
 
 check_arch
 update_source
@@ -114,8 +152,5 @@ install_soft
 clone_env
 setup_zsh
 
-
 log "All Installation done! good luck && bye"
-
-
 

@@ -6,6 +6,15 @@ Host st
 	DynamicForward 127.0.0.1:1081
 	ForwardX11 yes
 
+Host st2
+	HostName 192.168.193.6
+	User pengcheng
+	ForwardX11 yes
+
+
+
+
+
 Host gst
 	HostName buaadml.info
 	User pengcheng
@@ -88,11 +97,6 @@ Host de
 	User dml_401
 	ForwardX11 yes
 
-Host dora
-	HostName dora.buaadml.info
-	User dml_401
-	ForwardX11 yes
-
 #gcp server
 Host hk
 	HostName gcphk.chengpeng.space
@@ -104,9 +108,4 @@ Host pve
 Host ali
 	HostName ali.chengpeng.space
 	User root
-
-#for git servers
-Host gitea.buaadml.info
-    HostName gitea.buaadml.info
-    PreferredAuthentications publickey
 

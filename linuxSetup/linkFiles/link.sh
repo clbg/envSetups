@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 echo "linking .ssh/confg file"
 mkdir -p $HOME/.ssh
 ln -sf $HOME/envSetups/linuxSetup/linkFiles/HOME-.ssh-config $HOME/.ssh/config
@@ -20,8 +21,7 @@ echo "adding pulic key to authorized keys"
 
 key_path=$HOME/envSetups/linuxSetup/linkFiles/key.pub 
 
-f=$(cat $key_path)
-if ! grep -qi "$f" $HOME/.ssh/authorized_keys; then
+if ! grep -qiFf  $key_path  $HOME/.ssh/authorized_keys; then
 	cat $key_path >> $HOME/.ssh/authorized_keys
 	echo "appending key"
 else 

@@ -1,3 +1,4 @@
+set -x
 DIST=
 PKG_M=
 
@@ -115,8 +116,8 @@ user_create(){
     ssh_dir="/home/airflow-worker/.ssh"
     pub_key_path="$HOME/envSetups/linuxSetup/linkFiles/deploy.pub"
     exe "mkdir $ssh_dir"
-    if ! grep -qi "$f" $ssh_dir/authorized_keys; then
-        cat $pub_key_path >> $ssh_dir/authorized_keys
+    if ! exe "grep -qiFf $pub_key_path  $ssh_dir/authorized_keys"; then
+        cat $pub_key_path | sudo tee  $ssh_dir/authorized_keys
         echo "appending key"
     else
         echo "key exists continue"

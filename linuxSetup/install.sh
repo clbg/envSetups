@@ -71,21 +71,22 @@ update_source(){
     elif [[ $PKG_M == $PKG_M_APT ]]; then
         exe "apt update "
     elif [[ $PKG_M == $PKG_M_YUM ]]; then
-	exe "yum update"
+	exe "yum -y update && yum -y upgrade"
+        exe "yum -y install epel-release"
     fi
     log "Updating done"
 }
 
 install_soft(){
     log "Installing softwares"
-    common_soft_list="tmux vim git zsh autojump curl wget "
+    common_soft_list="tmux vim git zsh curl wget "
     
 if [[ $PKG_M == $PKG_M_PACMAN ]]; then
-        exe "pacman -S $common_soft_list openssh  --noconfirm"
+        exe "pacman -S $common_soft_list openssh  autojump --noconfirm"
     elif [[ $PKG_M == $PKG_M_APT ]]; then
-        exe "apt -y install $common_soft_list openssh-server curl wget"
+        exe "apt -y install $common_soft_list openssh-server autojump curl wget"
     elif [[ $PKG_M == $PKG_M_YUM ]]; then
-	exe "yum -y install $common_soft_list openssh"
+	exe "yum -y install $common_soft_list openssh autojump-zsh"
     fi
     log "Installing done"
 }

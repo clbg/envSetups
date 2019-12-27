@@ -1,1 +1,32 @@
-ssh $1".chengpeng.press"
+USER=pengcheng
+
+while getopts 'ru:' OPTION; do
+  case "$OPTION" in
+    r)
+      USER=root
+      ;;
+    u)
+      USER=$OPTARG
+      ;;
+    ?)
+      echo "script usage: $(basename $0) [-r] [-u] hostprefix [ssh options]" >&2
+      echo "-r: ssh with root " >&2
+      echo "-u: ssh with target user " >&2
+      exit 1
+      ;;
+  esac
+done
+
+shift "$(($OPTIND -1))"
+
+HOSTNAME=$1".chengpeng.press"
+echo "ssh with"
+echo "user:"$USER
+echo "hostname:"$HOSTNAME
+
+shift 1
+ssh_options=$@
+echo "With ssh options: $@"
+cmd="ssh "$ssh_options" "$USER"@"$HOSTNAME
+echo running command $cmd
+$cmd

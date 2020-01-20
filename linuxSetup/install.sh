@@ -55,38 +55,30 @@ check_arch(){
     log "Your package manager is $PKG_M"
 }
 
-exe(){
-    if [ `whoami` == 'root' ];then
-        $1
-    else
-        sudo $1
-    fi
-}
-
 update_source(){
     log "Updating your source"
     #todo macos and centos/rhel
     if [[ $PKG_M == $PKG_M_PACMAN ]]; then
-        exe "pacman -Syu --noconfirm"
+        sudo pacman -Syu --noconfirm
     elif [[ $PKG_M == $PKG_M_APT ]]; then
-        exe "apt update "
+        sudo apt update
     elif [[ $PKG_M == $PKG_M_YUM ]]; then
-	exe "yum -y update && yum -y upgrade"
-        exe "yum -y install epel-release"
+	sudo yum -y update && yum -y upgrade
+        sudo yum -y install epel-release
     fi
     log "Updating done"
 }
 
 install_soft(){
     log "Installing softwares"
-    common_soft_list="tmux vim git zsh curl wget "
+    common_soft_list="tmux vim git zsh curl wget"
     
 if [[ $PKG_M == $PKG_M_PACMAN ]]; then
-        exe "pacman -S $common_soft_list openssh  autojump --noconfirm"
+        sudo pacman -S $common_soft_list openssh  autojump --noconfirm
     elif [[ $PKG_M == $PKG_M_APT ]]; then
-        exe "apt -y install $common_soft_list openssh-server autojump curl wget"
+        sudo apt -y install $common_soft_list openssh-server autojump curl wget
     elif [[ $PKG_M == $PKG_M_YUM ]]; then
-	exe "yum -y install $common_soft_list openssh autojump-zsh"
+	sudo yum -y install $common_soft_list openssh autojump-zsh
     fi
     log "Installing done"
 }
@@ -117,18 +109,20 @@ setup_zsh(){
 user_create(){
     log "Creating Users"
     log "Creating airflow-worker"
-    exe "sudo useradd  airflow-worker -m"
+    sudo useradd  airflow-worker -m -s /bin/bash
     ssh_dir="/home/airflow-worker/.ssh"
     pub_key_path="$HOME/envSetups/linuxSetup/linkFiles/deploy.pub"
-    exe "mkdir $ssh_dir"
-    if ! exe "grep -qiFf $pub_key_path  $ssh_dir/authorized_keys"; then
+    sudo mkdir $ssh_dir
+    if ! sudo grep -qiFf $pub_key_path  $ssh_dir/authorized_keys; then
         cat $pub_key_path | sudo tee  $ssh_dir/authorized_keys
         echo "appending key"
     else
         echo "key exists continue"
     fi
-    exe "chown -R airflow-worker:airflow-worker $ssh_dir"
-    exe "chmod 700  $ssh_dir"
+    sudo chown -R airflow-worker:airflow-worker $ssh_dir
+    sudo chmod 700  $ssh_dir
+    sudo su  - airflow-worker -c  "echo 'PATH=\$HOME/.local/bin:\$PATH' >> .bashrc "
+
 }
 
 while getopts 'w' OPTION; do

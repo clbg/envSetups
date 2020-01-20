@@ -94,9 +94,9 @@ source $ZSH/oh-my-zsh.sh
 #Env Vars
 source ~/envSetups/linuxSetup/envvar/aliases
 source ~/envSetups/linuxSetup/envvar/exports
+
 if [[  -f "$HOME/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi
 
-eval `ssh-agent -s`
 

@@ -130,6 +130,19 @@ user_create(){
 install_docker(){
     log "installing docker"
     bash -c "$(curl -fsSL https://get.docker.com)"
+    sudo usermod -aG docker $(whoami)
+    sudo mkdir -p /etc/docker
+    sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+    "registry-mirrors": [      
+        "https://dockerhub.azk8s.cn",        
+        "https://registry.docker-cn.com",
+        "https://docker.mirrors.ustc.edu.cn"
+    ]
+}
+EOF
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker
 
     log "install done"
 }
@@ -171,7 +184,10 @@ setup_zsh
 
 if [ "$DOCKER" = true ] ; then
     install_docker
+
 fi
 
 log "All Installation done! good luck && bye"
+
+
 

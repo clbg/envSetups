@@ -129,7 +129,7 @@ user_create(){
 
 install_docker(){
     log "installing docker"
-    bash -c "$(curl -fsSL https://get.docker.com -o get-docker.sh)"
+    bash -c "$(curl -fsSL https://get.docker.com)"
 
     log "install done"
 }

@@ -1,4 +1,3 @@
-set -x
 DIST=
 PKG_M=
 
@@ -16,6 +15,7 @@ PKG_M_YUM="yum"
 
 
 AIRFLOW_WORKER=false
+DOCKER=false
 
 log(){
     RED='\033[0;31m'
@@ -99,9 +99,11 @@ clone_env(){
 setup_zsh(){
     log "Setting up ZSH"
     log "Installing Oh my ZSH"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    git -C ~  clone https://github.com/ohmyzsh/ohmyzsh.git
+    bash ~/ohmyzsh/tools/install.sh
     log "Linking files"
     sh ~/envSetups/linuxSetup/linkFiles/link.sh
+    rm -rf ~/ohmyzsh
     log "Setting up ZSH done"
 }
 
@@ -125,15 +127,28 @@ user_create(){
 
 }
 
-while getopts 'w' OPTION; do
+install_docker(){
+    log "installing docker"
+    bash -c "$(curl -fsSL https://get.docker.com -o get-docker.sh)"
+
+    log "install done"
+}
+
+
+while getopts 'wd' OPTION; do
   case "$OPTION" in
     w)
       echo "worker machine"
       AIRFLOW_WORKER=true
       ;;
+    d)
+      echo "docker machine"
+      DOCKER=true
+      ;;
     ?)
       echo "script usage: $(basename $0) [-w] " >&2
       echo " -w  : install on airflow worker machine" >&2
+      echo " -d  : install docker" >&2
 
       exit 1
       ;;
@@ -146,11 +161,17 @@ if [ "$AIRFLOW_WORKER" = true ] ; then
     user_create
 fi
 
+
+
 check_arch
 update_source
 install_soft
 clone_env
 setup_zsh
+
+if [ "$DOCKER" = true ] ; then
+    install_docker
+fi
 
 log "All Installation done! good luck && bye"
 

@@ -27,6 +27,6 @@ echo "hostname:"$HOSTNAME
 shift 1
 ssh_options=$@
 echo "With ssh options: $@"
-cmd="ssh "$ssh_options" "$USER"@"$HOSTNAME
+cmd="ssh -A  "$ssh_options" "$USER"@"$HOSTNAME
 echo running command $cmd
 $cmd

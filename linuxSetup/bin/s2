@@ -1,7 +1,10 @@
 USER=root
-
-while getopts 'pu:' OPTION; do
+MOSH=false
+while getopts 'mpu:' OPTION; do
   case "$OPTION" in
+    m)
+      MOSH=true
+      ;;
     p)
       USER=pengcheng
       ;;
@@ -27,6 +30,12 @@ echo "hostname:"$HOSTNAME
 shift 1
 ssh_options=$@
 echo "With ssh options: $@"
-cmd="ssh -A  "$ssh_options" "$USER"@"$HOSTNAME
+
+if [ "$MOSH" = true ] ; then
+    cmd="mosh -A  "$ssh_options" "$USER"@"$HOSTNAME
+else
+    cmd="ssh -A  "$ssh_options" "$USER"@"$HOSTNAME
+fi
+
 echo running command $cmd
 $cmd

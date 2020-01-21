@@ -1,16 +1,16 @@
-USER=pengcheng
+USER=root
 
-while getopts 'ru:' OPTION; do
+while getopts 'pu:' OPTION; do
   case "$OPTION" in
-    r)
-      USER=root
+    p)
+      USER=pengcheng
       ;;
     u)
       USER=$OPTARG
       ;;
     ?)
       echo "script usage: $(basename $0) [-r] [-u] hostprefix [ssh options]" >&2
-      echo "-r: ssh with root " >&2
+      echo "-p: ssh with pengcheng" >&2
       echo "-u: ssh with target user " >&2
       exit 1
       ;;

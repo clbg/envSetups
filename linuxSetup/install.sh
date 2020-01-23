@@ -71,7 +71,7 @@ update_source(){
 
 install_soft(){
     log "Installing softwares"
-    common_soft_list="tmux vim git zsh curl wget"
+    common_soft_list="tmux vim git zsh curl wget mosh"
     
 if [[ $PKG_M == $PKG_M_PACMAN ]]; then
         sudo pacman -S $common_soft_list openssh  autojump --noconfirm

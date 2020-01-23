@@ -1,9 +1,10 @@
 
 # using curl
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/pengchengbuaa/envSetups/master/linuxSetup/install.sh)"
+curl -fsSL https://raw.githubusercontent.com/pengchengbuaa/envSetups/master/linuxSetup/install.sh | bash -
 
-#using wget 
-wget --no-check-certificate -O - https://raw.githubusercontent.com/pengchengbuaa/envSetups/master/linuxSetup/install.sh | bash
+wget https://raw.githubusercontent.com/pengchengbuaa/envSetups/master/linuxSetup/install.sh && bash install.sh && rm install.sh
+
+
 
 # if you don't have curl nor wget 
 

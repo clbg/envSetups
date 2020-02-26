@@ -12,7 +12,7 @@ DIST_PVE="Proxmox"
 PKG_M_APT="apt"
 PKG_M_PACMAN="pacman"
 PKG_M_YUM="yum"
-
+PKG_M_BREW="brew"
 
 AIRFLOW_WORKER=false
 DOCKER=false
@@ -46,6 +46,9 @@ set_sys_var(){
     elif grep -Eqi "PVE" /proc/version; then
         DIST=$DIST_PVE
         PKG_M=$PKG_M_APT
+    elif [ "$(uname)" == "Darwin" ]; then
+        DIST=$DIST_MACOS
+        PKG_M=$PKG_M_BREW
     fi
 }
 
@@ -79,6 +82,8 @@ if [[ $PKG_M == $PKG_M_PACMAN ]]; then
         sudo apt -y install $common_soft_list openssh-server autojump curl wget
     elif [[ $PKG_M == $PKG_M_YUM ]]; then
 	sudo yum -y install $common_soft_list openssh autojump-zsh
+    elif [[ $PKG_M == $PKG_M_BREW ]]; then
+        brew install $common_soft_list
     fi
     log "Installing done"
 }

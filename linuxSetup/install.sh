@@ -74,7 +74,7 @@ update_source(){
 
 install_soft(){
     log "Installing softwares"
-    common_soft_list="tmux vim git zsh curl wget mosh"
+    common_soft_list="tmux vim git zsh curl wget mosh htop rsync"
     
 if [[ $PKG_M == $PKG_M_PACMAN ]]; then
         sudo pacman -S $common_soft_list openssh  autojump --noconfirm
@@ -153,6 +153,12 @@ EOF
 }
 
 
+setup_sshserver(){
+    log "setting up ssh server, changing /etc/ssh/sshd_config file"
+    sudo sed -i  's/^#\(AllowAgentForwarding\ yes\)/\1/' /etc/ssh/sshd_config
+    log "setup  ssh server done"
+}
+
 while getopts 'wd' OPTION; do
   case "$OPTION" in
     w)
@@ -186,7 +192,7 @@ update_source
 install_soft
 clone_env
 setup_zsh
-
+setup_sshserver
 if [ "$DOCKER" = true ] ; then
     install_docker
 

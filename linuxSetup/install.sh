@@ -83,7 +83,7 @@ if [[ $PKG_M == $PKG_M_PACMAN ]]; then
     elif [[ $PKG_M == $PKG_M_YUM ]]; then
 	sudo yum -y install $common_soft_list openssh autojump-zsh
     elif [[ $PKG_M == $PKG_M_BREW ]]; then
-        brew install $common_soft_list
+        brew install $common_soft_list autojump
     fi
     log "Installing done"
 }

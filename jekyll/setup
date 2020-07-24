@@ -1,3 +1,0 @@
-sudo apt-get install -y ruby-full ruby-bundler
-sudo gem install jekyll
-sudo gem install minima

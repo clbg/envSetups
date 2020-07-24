@@ -1,16 +1,11 @@
 # envSetups
 some scripts to set up my computer 
 
-
-
-## jekyll
-setup jekyll blog
-
 ## linuxSetup
 shell scripts to setup linux for various distributions
 
-## nginx
-my sites config
+## macosSetup
+shell scripts to setup macOS
 
 ## windowsReg
 some reg files with config on windows

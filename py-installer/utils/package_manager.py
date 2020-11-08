@@ -27,6 +27,7 @@ def get_package_manager(dist: Distribution):
     if dist == Distribution.Windows:
         return PackageManager.Choco
     else:
+        print("Unknow Package manager in your distribution:" + str(dist))
         return PackageManager.UnKnow
 
 

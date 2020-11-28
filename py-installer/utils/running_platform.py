@@ -14,7 +14,7 @@ class Distribution(Enum):
     MacOS = "macos"
     Ubuntu = "ubuntu"
     Windows = "windows"
-    Unknow = "Unknow"
+    Unknown = "Unknown"
 
 
 def get_distribution():
@@ -24,9 +24,9 @@ def get_distribution():
     if platform.system() == "Darwin":
         return Distribution.MacOS
     else:
-        dist = Distribution.Unknow
+        dist = Distribution.Unknown
         try:
             dist = Distribution(distro.id())
         except ValueError:
-            dist = Distribution.Unknow
+            dist = Distribution.Unknown
         return dist

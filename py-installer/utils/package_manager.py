@@ -11,7 +11,7 @@ class PackageManager(Enum):
     Choco = "choco"
     Pacman = "pacman"
     Yum = "yum"
-    UnKnow = "unknow"
+    UnKnown = "unknown"
 
 
 def get_package_manager(dist: Distribution):
@@ -27,7 +27,7 @@ def get_package_manager(dist: Distribution):
     if dist == Distribution.Windows:
         return PackageManager.Choco
     else:
-        log("Unknow Package manager in your distribution:" + str(dist))
+        log("Unknown Package manager in your distribution:" + str(dist))
         return PackageManager.UnKnow
 
 

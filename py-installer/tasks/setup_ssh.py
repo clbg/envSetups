@@ -11,7 +11,6 @@ def setup_ssh():
     append_public_key()
     log("Setting up ssh done")
 
-
 def append_public_key():
     log('appending key')
     if run_bash(f'grep -qiFf  {PUBLIC_KEY_PATH} /$HOME/.ssh/authorized_keys') != 0:
@@ -19,7 +18,6 @@ def append_public_key():
         run_bash(f'cat {PUBLIC_KEY_PATH} >> $HOME/.ssh/authorized_keys')
     else:
         log("key exists already, continue")
-
 
 def link_ssh_config_files():
     log("linking .ssh/config file")

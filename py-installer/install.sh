@@ -1,4 +1,4 @@
-
+set -x
 
 log(){
     RED='\033[0;31m'
@@ -24,4 +24,5 @@ clone_env(){
 
 clone_env
 cd envSetups
+pip3 install distro
 python3 -m py-installer.install

@@ -24,5 +24,5 @@ clone_env(){
 
 clone_env
 cd envSetups
-pip3 install distro
+sudo pip3 install distro
 python3 -m py-installer.install

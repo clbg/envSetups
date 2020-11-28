@@ -18,7 +18,7 @@ class Distribution(Enum):
 
 
 def get_distribution():
-    """get distributions of windows/darwin/different linuxs"""
+    """get distributions of windows/darwin/different linux"""
     if platform.system() == "Windows":
         return Distribution.Windows
     if platform.system() == "Darwin":

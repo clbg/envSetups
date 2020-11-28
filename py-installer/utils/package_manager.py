@@ -2,7 +2,7 @@
 from enum import Enum
 from .running_platform import Distribution
 from .run_bash import run_bash_as_sudo, run_bash
-
+from .color_log import log
 
 class PackageManager(Enum):
     """This is a Package Manager Enum."""
@@ -27,7 +27,7 @@ def get_package_manager(dist: Distribution):
     if dist == Distribution.Windows:
         return PackageManager.Choco
     else:
-        print("Unknow Package manager in your distribution:" + str(dist))
+        log("Unknow Package manager in your distribution:" + str(dist))
         return PackageManager.UnKnow
 
 
@@ -45,5 +45,5 @@ def update_source(pkg_m: PackageManager):
     if pkg_m == PackageManager.Brew:
         run_bash('brew update')
     else:
-        print("not support your platform:" + str(pkg_m))
+        log("not support your platform:" + str(pkg_m))
     # todo choco

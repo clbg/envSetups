@@ -11,101 +11,12 @@ Host st2
 	User pengcheng
 	ForwardX11 yes
 
-
-
-
-
 Host gst
 	HostName buaadml.info
 	User pengcheng
         ProxyCommand ssh pengcheng@192.168.193.1  -W %h:%p
 	ForwardX11 yes
 
-Host g
-	HostName buaadml.info
-	User pengcheng
-	ForwardX11 yes
-
-Host cg
-	HostName chaos.buaadml.info
-	User  dml_401
-
-Host dg
-	HostName buaadml.info
-	User dml_401
-	ForwardX11 yes
-
-
 Host space
 	HostName chengpeng.space
 	User root
-
-Host do
-	HostName do.chengpeng.space
-	User root
-Host do6
-	HostName do6.chengpeng.space
-	User root
-
-Host a
-	HostName anna.buaadml.info
-	User pengcheng
-	ForwardX11 yes
-
-Host b
-	HostName betty.buaadml.info
-	User pengcheng
-	ForwardX11 yes
-
-Host c
-	HostName coral.buaadml.info
-	User pengcheng
-	ForwardX11 yes
-
-Host d
-	HostName danny.buaadml.info
-	User pengcheng
-	ForwardX11 yes
-
-Host e
-	HostName ella.buaadml.info
-	User pengcheng
-	ForwardX11 yes
-
-Host da
-	HostName anna.buaadml.info
-	User dml_401
-	ForwardX11 yes
-
-Host db
-	HostName betty.buaadml.info
-	User dml_401
-	ForwardX11 yes
-
-Host dc
-	HostName coral.buaadml.info
-	User dml_401
-	ForwardX11 yes
-
-Host dd
-	HostName danny.buaadml.info
-	User dml_401
-	ForwardX11 yes
-
-Host de
-	HostName ella.buaadml.info
-	User dml_401
-	ForwardX11 yes
-
-#gcp server
-Host hk
-	HostName gcphk.chengpeng.space
-	User pengcheng
-Host pve
-	HostName 192.168.193.5
-	User root
-
-Host ali
-	HostName ali.chengpeng.space
-	User root
-

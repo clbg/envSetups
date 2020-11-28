@@ -14,8 +14,6 @@ PKG_M_PACMAN="pacman"
 PKG_M_YUM="yum"
 PKG_M_BREW="brew"
 
-AIRFLOW_WORKER=false
-DOCKER=false
 
 log(){
     RED='\033[0;31m'
@@ -112,79 +110,11 @@ setup_zsh(){
     log "Setting up ZSH done"
 }
 
-
-user_create(){
-    log "Creating Users"
-    log "Creating airflow-worker"
-    sudo useradd  airflow-worker -m -s /bin/bash
-    ssh_dir="/home/airflow-worker/.ssh"
-    pub_key_path="$HOME/envSetups/linuxSetup/linkFiles/deploy.pub"
-    sudo mkdir $ssh_dir
-    if ! sudo grep -qiFf $pub_key_path  $ssh_dir/authorized_keys; then
-        cat $pub_key_path | sudo tee  $ssh_dir/authorized_keys
-        echo "appending key"
-    else
-        echo "key exists continue"
-    fi
-    sudo chown -R airflow-worker:airflow-worker $ssh_dir
-    sudo chmod 700  $ssh_dir
-    sudo su  - airflow-worker -c  "echo 'PATH=\$HOME/.local/bin:\$PATH' >> .bashrc "
-
-}
-
-install_docker(){
-    log "installing docker"
-    bash -c "$(curl -fsSL https://get.docker.com)"
-    sudo usermod -aG docker $(whoami)
-    sudo mkdir -p /etc/docker
-    sudo tee /etc/docker/daemon.json <<-'EOF'
-{
-    "registry-mirrors": [      
-        "https://dockerhub.azk8s.cn",        
-        "https://registry.docker-cn.com",
-        "https://docker.mirrors.ustc.edu.cn"
-    ]
-}
-EOF
-    sudo systemctl daemon-reload
-    sudo systemctl restart docker
-
-    log "install done"
-}
-
-
 setup_sshserver(){
     log "setting up ssh server, changing /etc/ssh/sshd_config file"
     sudo sed -i  's/^#\(AllowAgentForwarding\ yes\)/\1/' /etc/ssh/sshd_config
     log "setup  ssh server done"
 }
-
-while getopts 'wd' OPTION; do
-  case "$OPTION" in
-    w)
-      echo "worker machine"
-      AIRFLOW_WORKER=true
-      ;;
-    d)
-      echo "docker machine"
-      DOCKER=true
-      ;;
-    ?)
-      echo "script usage: $(basename $0) [-w] " >&2
-      echo " -w  : install on airflow worker machine" >&2
-      echo " -d  : install docker" >&2
-
-      exit 1
-      ;;
-  esac
-done
-shift "$(($OPTIND -1))"
-
-log "Start env setup"
-if [ "$AIRFLOW_WORKER" = true ] ; then
-    user_create
-fi
-
 
 
 check_arch
@@ -193,12 +123,5 @@ install_soft
 clone_env
 setup_zsh
 setup_sshserver
-if [ "$DOCKER" = true ] ; then
-    install_docker
-
-fi
 
 log "All Installation done! good luck && bye"
-
-
-

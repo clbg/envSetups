@@ -28,7 +28,7 @@ def get_package_manager(dist: Distribution):
         return PackageManager.Choco
     else:
         log("Unknown Package manager in your distribution:" + str(dist))
-        return PackageManager.UnKnow
+        return PackageManager.UnKnown
 
 
 def update_source(pkg_m: PackageManager):

@@ -99,4 +99,4 @@ if [[  -f "$HOME/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi
 
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

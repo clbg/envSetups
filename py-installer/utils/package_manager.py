@@ -33,7 +33,7 @@ def get_package_manager(dist: Distribution):
 
 def update_source(pkg_m: PackageManager):
     """update source like apt update"""
-    print("Updating your source")
+    log("Updating your source")
     if pkg_m == PackageManager.Pacman:
         run_bash_as_sudo('pacman -Syu - -noconfirm')
     if pkg_m == PackageManager.Yum:

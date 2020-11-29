@@ -78,15 +78,14 @@
 
 
 # open applications
-#alt - return : open /Applications/iTerm.app
-alt + shift - return : open /Applications/iTerm.app
-alt - g : open /Applications/Google\ Chrome.app
-alt - m : open /Applications/Microsoft\ Outlook.app
-alt - c : open /Applications/Amazon\ Chime.app
-alt - a : open /Applications/Cisco/Cisco\ AnyConnect\ Secure\ Mobility\ Client.app
-alt - w : open /Applications/WeChat.app
-alt - t : open /Applications/Telegram.app
-alt - v : open /Applications/Visual\ Studio\ Code.app
+ralt - return : open /Applications/iTerm.app
+ralt - g : open /Applications/Google\ Chrome.app
+ralt - m : open /Applications/Microsoft\ Outlook.app
+ralt - c : open /Applications/Amazon\ Chime.app
+ralt - a : open /Applications/Cisco/Cisco\ AnyConnect\ Secure\ Mobility\ Client.app
+ralt - w : open /Applications/WeChat.app
+ralt - t : open /Applications/Telegram.app
+ralt - v : open /Applications/Visual\ Studio\ Code.app
 # Show system statistics
 fn + lalt - 1 : "${HOME}"/.config/yabai/scripts/show_cpu.sh
 fn + lalt - 2 : "${HOME}"/.config/yabai/scripts/show_mem.sh

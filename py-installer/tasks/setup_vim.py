@@ -26,13 +26,11 @@ def install_vim_plug():
     run_bash('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
     # for neovim
     run_bash(r"sh -c 'curl -fLo \"${XDG_DATA_HOME:-$HOME/.local/share}\"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'")
-# mkdir -p ~/.config/nvim
-# mkdir -p ~/.vim/undodir
-# ln -s ~/.vimrc ~/.config/nvim/init.vim
-
-# INstall vim plug
-
-## vim
-
-
-## Nvim
+    
+def update_vim_plug():
+    # https://github.com/junegunn/vim-plug/issues/225
+    #for vim
+    run_bash(r"vim -E -s -u '~/.vimrc'  +PlugInstall +qall")
+    #for nvim
+    # TODO
+    run_bash('nvim --headless +PlugInstall +qall')

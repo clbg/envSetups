@@ -8,7 +8,7 @@ class Distribution(Enum):
     """ find available distributions:
     https://distro.readthedocs.io/en/latest/
     Ctrl +F Distro ID"""
-    Amazon = "amazon"
+    Amazon = "amzn"
     Arch = "arch"
     Debian = "debian"
     MacOS = "macos"

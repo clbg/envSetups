@@ -36,13 +36,13 @@ def update_source(pkg_m: PackageManager):
     log("Updating your source")
     if pkg_m == PackageManager.Pacman:
         run_bash_as_sudo('pacman -Syu - -noconfirm')
-    if pkg_m == PackageManager.Yum:
+    elif pkg_m == PackageManager.Yum:
         run_bash_as_sudo('yum -y update')
         run_bash_as_sudo('yum - y upgrade')
         run_bash_as_sudo('yum -y install epel-release')
-    if pkg_m == PackageManager.Apt:
+    elif pkg_m == PackageManager.Apt:
         run_bash_as_sudo('apt update')
-    if pkg_m == PackageManager.Brew:
+    elif pkg_m == PackageManager.Brew:
         run_bash('brew update')
     else:
         log("not support your platform:" + str(pkg_m))

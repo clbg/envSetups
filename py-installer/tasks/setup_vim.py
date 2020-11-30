@@ -26,7 +26,7 @@ def install_vim_plug():
     # for vim
     run_bash('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
     # for neovim
-    run_bash(r"sh -c 'curl -fLo \"${XDG_DATA_HOME:-$HOME/.local/share}\"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'")
+    run_bash(r"sh -c 'curl -fLo ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'")
     
 def update_vim_plug():
     # https://github.com/junegunn/vim-plug/issues/225
@@ -35,3 +35,12 @@ def update_vim_plug():
     #for nvim
     # TODO
     run_bash('nvim --headless +PlugInstall +qall')
+
+"""
+COC
+
+curl -sL install-node.now.sh | sh
+
+:CocInstall coc-tsserver coc-json coc-html coc-css coc-python
+
+"""

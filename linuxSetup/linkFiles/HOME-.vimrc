@@ -16,26 +16,51 @@ set undofile
 set incsearch
 
 
+" Keybaord Remapping
+let mapleader = " "
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
+"Nerd tree
+Plug 'scrooloose/nerdtree'
 " FZF 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+"{{{
+  nnoremap <silent> <leader><space> :Files<CR>
+  nnoremap <silent> <leader>a :Buffers<CR>
+  nnoremap <silent> <leader>A :Windows<CR>
+  nnoremap <silent> <leader>; :BLines<CR>
+  nnoremap <silent> <leader>o :BTags<CR>
+  nnoremap <silent> <leader>O :Tags<CR>
+  nnoremap <silent> <leader>? :History<CR>
+ " nnoremap <silent> <leader>. :AgIn 
 
+  nnoremap <silent> K :call SearchWordWithAg()<CR>
+  vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+  nnoremap <silent> <leader>gl :Commits<CR>
+  nnoremap <silent> <leader>ga :BCommits<CR>
+  nnoremap <silent> <leader>ft :Filetypes<CR>
+"}}}
+
+Plug 'junegunn/fzf.vim'
 " Theme 
 Plug 'morhetz/gruvbox'
-
 " fugitive
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 
-" Initialize plugin system
+if has("nvim")
+    " lsp
+    "Plug 'neovim/nvim-lspconfig'
+endif
+
+"coc
+if has("nvim")
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
+
 call plug#end()
 
 set colorcolumn=120
@@ -46,8 +71,6 @@ set background=dark
 
 
 
-" Keybaord Remapping
-let mapleader = " "
 " resize split
 map - <C-W>-
 map + <C-W>+
@@ -59,4 +82,7 @@ nnoremap <leader>l :wincmd l<CR>
 
 " for fugitive
 nmap <leader>gs :G<CR>
+
+" for nerdTree
+map <C-n> :NERDTreeToggle<CR>
 

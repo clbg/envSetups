@@ -7,6 +7,7 @@ def setup_vim(dist:Distribution):
     install_neovim()
     setup_vimrc()
     install_vim_plug()
+    update_vim_plug()
 
 
 def install_neovim():

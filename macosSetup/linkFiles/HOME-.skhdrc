@@ -78,14 +78,14 @@
 
 
 # open applications
-ralt - return : open /Applications/iTerm.app
-ralt - g : open /Applications/Google\ Chrome.app
-ralt - m : open /Applications/Microsoft\ Outlook.app
-ralt - c : open /Applications/Amazon\ Chime.app
-ralt - a : open /Applications/Cisco/Cisco\ AnyConnect\ Secure\ Mobility\ Client.app
-ralt - w : open /Applications/WeChat.app
-ralt - t : open /Applications/Telegram.app
-ralt - v : open /Applications/Visual\ Studio\ Code.app
+lalt - return : open /Applications/iTerm.app
+lalt - g : open /Applications/Google\ Chrome.app
+lalt - m : open /Applications/Microsoft\ Outlook.app
+lalt - c : open /Applications/Amazon\ Chime.app
+lalt - a : open /Applications/Cisco/Cisco\ AnyConnect\ Secure\ Mobility\ Client.app
+lalt - w : open /Applications/WeChat.app
+lalt - t : open /Applications/Telegram.app
+lalt - v : open /Applications/Visual\ Studio\ Code.app
 # Show system statistics
 fn + lalt - 1 : "${HOME}"/.config/yabai/scripts/show_cpu.sh
 fn + lalt - 2 : "${HOME}"/.config/yabai/scripts/show_mem.sh
@@ -94,19 +94,19 @@ fn + lalt - 4 : "${HOME}"/.config/yabai/scripts/show_disk.sh
 fn + lalt - 5 : "${HOME}"/.config/yabai/scripts/show_song.sh
 
 # Navigation
-alt - h : yabai -m window --focus west
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - l : yabai -m window --focus east
-alt - 1 : yabai -m space --focus 1
-alt - 2 : yabai -m space --focus 2
-alt - 3 : yabai -m space --focus 3
-alt - 4 : yabai -m space --focus 4
-alt - 5 : yabai -m space --focus 5
-alt - 6 : yabai -m space --focus 6
-alt - 7 : yabai -m space --focus 7
-alt - 8 : yabai -m space --focus 8
-alt - 9 : yabai -m space --focus 9
+lalt - h : yabai -m window --focus west
+lalt - j : yabai -m window --focus south
+lalt - k : yabai -m window --focus north
+lalt - l : yabai -m window --focus east
+lalt - 1 : yabai -m space --focus 1
+lalt - 2 : yabai -m space --focus 2
+lalt - 3 : yabai -m space --focus 3
+lalt - 4 : yabai -m space --focus 4
+lalt - 5 : yabai -m space --focus 5
+lalt - 6 : yabai -m space --focus 6
+lalt - 7 : yabai -m space --focus 7
+lalt - 8 : yabai -m space --focus 8
+lalt - 9 : yabai -m space --focus 9
 
 # Moving windows
 shift + alt - h : yabai -m window --warp west

@@ -40,8 +40,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "{{{
   let FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-  "nnoremap <silent> <leader><space> :Files<CR>
-  nnoremap <silent> <leader><space> :GFiles<CR>
+  let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+  nnoremap <silent> <leader><space> :Files<CR>
+  "nnoremap <silent> <leader><space> :GFiles<CR>
   nnoremap <silent> <leader>a :Buffers<CR>
   nnoremap <silent> <leader>A :Windows<CR>
   nnoremap <silent> <leader>; :BLines<CR>

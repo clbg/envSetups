@@ -8,6 +8,7 @@ def setup_vim(dist:Distribution):
     setup_vimrc()
     install_vim_plug()
     update_vim_plug()
+    setup_coc()
 
 
 def install_neovim():
@@ -36,11 +37,6 @@ def update_vim_plug():
     # TODO
     run_bash('nvim --headless +PlugInstall +qall')
 
-"""
-COC
+def setup_coc():
+    run_bash('nvim --headless  "+CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-python" +qa')
 
-curl -sL install-node.now.sh | sh
-
-:CocInstall coc-tsserver coc-json coc-html coc-css coc-python
-
-"""

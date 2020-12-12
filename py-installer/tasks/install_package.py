@@ -2,7 +2,7 @@ from ..utils.package_manager import PackageManager, update_source
 from ..utils.run_bash import run_bash_as_sudo, run_bash
 from ..utils.color_log import log
 
-COMMON_PACKAGES_TO_INSTALL = "tmux vim git zsh curl wget mosh htop rsync neovim"
+COMMON_PACKAGES_TO_INSTALL = "tmux vim git zsh curl wget mosh htop rsync neovim nodejs npm"
 PM_PKGLIST_DICT = {
     PackageManager.Pacman: f'{COMMON_PACKAGES_TO_INSTALL} openssh autojump python-pynvim',
     PackageManager.Apt: f'{COMMON_PACKAGES_TO_INSTALL} openssh-server autojump python3-neovim',

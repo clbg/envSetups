@@ -4,10 +4,11 @@ from ..utils.color_log import log
 
 COMMON_PACKAGES_TO_INSTALL = "tmux vim git zsh curl wget mosh htop rsync neovim nodejs npm"
 PM_PKGLIST_DICT = {
-    PackageManager.Pacman: f'{COMMON_PACKAGES_TO_INSTALL} openssh autojump python-pynvim',
-    PackageManager.Apt: f'{COMMON_PACKAGES_TO_INSTALL} openssh-server autojump python3-neovim',
-    PackageManager.Yum: f'{COMMON_PACKAGES_TO_INSTALL} openssh autojump-zsh python36-neovim',
-    PackageManager.Brew: f'{COMMON_PACKAGES_TO_INSTALL} '
+   # silver_searcher is code searcher https://github.com/ggreer/the_silver_searcher#installing
+    PackageManager.Pacman: f'{COMMON_PACKAGES_TO_INSTALL} openssh autojump python-pynvim the_silver_searcher',
+    PackageManager.Apt: f'{COMMON_PACKAGES_TO_INSTALL} openssh-server autojump python3-neovim silversearcher-ag',
+    PackageManager.Yum: f'{COMMON_PACKAGES_TO_INSTALL} openssh autojump-zsh python36-neovim the_silver_searcher',
+    PackageManager.Brew: f'{COMMON_PACKAGES_TO_INSTALL} the_silver_searcher'
 }
 
 

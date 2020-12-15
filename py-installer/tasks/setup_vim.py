@@ -38,5 +38,7 @@ def update_vim_plug():
     run_bash('nvim --headless +PlugInstall +qall')
 
 def setup_coc():
+    log("settingup coc")
     run_bash('nvim --headless  "+CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-python" +qa')
+    log("settingup coc done")
 

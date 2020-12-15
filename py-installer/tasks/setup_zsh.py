@@ -17,3 +17,6 @@ def install_oh_my_zsh():
 def link_zsh_files():
     log("update your zshrc")
     soft_link('~/envSetups/linuxSetup/linkFiles/HOME-.zshrc', '~/.zshrc')
+
+def install_fzf():
+    log('installing fzf')

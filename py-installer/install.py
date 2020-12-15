@@ -9,7 +9,7 @@ from .utils.package_manager import get_package_manager
 dist = get_distribution()
 pkg_m = get_package_manager(dist)
 
-install_packages(pkg_m)
+install_packages(dist, pkg_m)
 setup_ssh()
 setup_zsh()
 setup_vim(dist)

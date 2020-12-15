@@ -20,12 +20,12 @@ clone_env(){
         git clone https://github.com/pengchengbuaa/envSetups.git
         log "Cloning done"
     fi
-    git config user.name 'charlie'
-    git config user.email 'spam@chengpeng.space'
 }
 
 
 clone_env
 cd envSetups
+git config user.name 'charlie'
+git config user.email 'spam@chengpeng.space'
 sudo pip3 install distro
 python3 -m py-installer.install

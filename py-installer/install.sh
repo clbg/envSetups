@@ -1,10 +1,11 @@
 set -x
 
-log(){
-    RED='\033[0;31m'
-    GREEN='\033[0;32m'
-    NC='\033[0m' # No Color
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
 
+
+log(){
     echo -e "${GREEN}$1 ${NC}" 
 }
 
@@ -19,6 +20,8 @@ clone_env(){
         git clone https://github.com/pengchengbuaa/envSetups.git
         log "Cloning done"
     fi
+    git config user.name 'charlie'
+    git config user.email 'spam@chengpeng.space'
 }
 
 

@@ -1,6 +1,15 @@
 # envSetups
 some scripts to set up my computer 
 
+## py-installer
+python scripts to setup computer, reference assets in linuxSetup/macosSetup/windwosReg
+
+make sure you have pip3 installed before run 
+```
+curl -sL chengpeng.space/i | bash
+
+```
+
 ## linuxSetup
 shell scripts to setup linux for various distributions
 

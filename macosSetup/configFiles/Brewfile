@@ -26,4 +26,6 @@ brew "wget"
 # UNIX shell (command interpreter)
 brew "zsh"
 cask "karabiner-elements"
+cask "kicad"
+cask "kindle"
 cask "telegram"

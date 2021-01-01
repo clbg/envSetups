@@ -15,6 +15,8 @@ brew "neovim"
 brew "node"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# Code-search similar to ack
+brew "the_silver_searcher"
 # Terminal multiplexer
 brew "tmux"
 # Vi 'workalike' with many additional features
@@ -23,4 +25,5 @@ brew "vim"
 brew "wget"
 # UNIX shell (command interpreter)
 brew "zsh"
+cask "karabiner-elements"
 cask "telegram"

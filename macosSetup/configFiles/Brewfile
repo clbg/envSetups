@@ -1,6 +1,6 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
+tap "homebrew/cask", "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git"
+tap "homebrew/core", "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Distributed revision control system
@@ -25,7 +25,10 @@ brew "vim"
 brew "wget"
 # UNIX shell (command interpreter)
 brew "zsh"
+cask "google-chrome"
+cask "iterm2"
 cask "karabiner-elements"
 cask "kicad"
 cask "kindle"
 cask "telegram"
+cask "wechat"

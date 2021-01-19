@@ -1,16 +1,26 @@
 tap "homebrew/bundle"
-tap "homebrew/cask", "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git"
-tap "homebrew/core", "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "koekeishiya/formulae"
+tap "mistertea/et"
+# Shell extension to jump to frequently used directories
+brew "autojump"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Charset analyzer and converter
+brew "enca"
+# Command-line fuzzy finder written in Go
+brew "fzf"
 # Distributed revision control system
 brew "git"
 # Improved top (interactive process viewer)
 brew "htop"
-# Remote terminal application
-brew "mosh"
+# Improved colored diff
+brew "icdiff"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
 # Ambitious Vim-fork focused on extensibility and agility
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 # Platform built on V8 to build network applications
 brew "node"
 # Utility that provides fast incremental file transfer
@@ -21,10 +31,20 @@ brew "the_silver_searcher"
 brew "tmux"
 # Vi 'workalike' with many additional features
 brew "vim"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Watch files and take action when they change
+brew "watchman"
 # Internet file retriever
 brew "wget"
 # UNIX shell (command interpreter)
 brew "zsh"
+# Simple hotkey-daemon for macOS.
+brew "koekeishiya/formulae/skhd"
+# A tiling window manager for macOS based on binary space partitioning.
+brew "koekeishiya/formulae/yabai"
+# Remote terminal with IP roaming
+brew "mistertea/et/et"
 cask "google-chrome"
 cask "iterm2"
 cask "karabiner-elements"

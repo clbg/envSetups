@@ -51,3 +51,8 @@ git -C "$(brew --repo homebrew/cask-drivers)" remote set-url origin https://mirr
 git -C "$(brew --repo homebrew/cask-versions)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask-versions.git
 ```
 
+### hi-DPI
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/xzhih/one-key-hidpi/master/hidpi.sh)"
+```
+

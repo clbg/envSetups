@@ -16,8 +16,20 @@ PIP_PKG_LIST = 'icdiff'
 
 BREW_BUNDLE_FILE = '~/envSetups/macosSetup/configFiles/BrewFile'
 
+def prepare_package_manager(dist:Distribution, pkg_m:PackageManager):
+    if pkg_m == PackageManager.Brew:
+        #Install brew if not exist
+        if run_bash('command -v brew')!=0:
+            log('installing hoembrew...')
+            install_homebrew()
+            log('installing hoembrew done...')
+    # TODO choco
+ 
+
+
 def install_packages(dist:Distribution, pkg_m: PackageManager):
     pkg_list = PM_PKGLIST_DICT[pkg_m]
+    prepare_package_manager(dist,pkg_m)
     update_source(pkg_m)
     install_packages_with_package_manager(pkg_list, pkg_m)
     install_pacakges_with_pip(PIP_PKG_LIST, pkg_m)
@@ -34,19 +46,13 @@ def install_packages_with_package_manager(package_list: str, pkg_m: PackageManag
     if pkg_m == PackageManager.Yum:
         run_bash_as_sudo(f'yum -y install {package_list}')
     if pkg_m == PackageManager.Brew:
-        #Install brew if not exist
-        if run_bash('command -v brew')!=0:
-            log('installing hoembrew...')
-            install_homebrew()
-            log('installing hoembrew done...')
         #Generate BrewFile:
         # brew bundle dump --describe --force --file="~/envSetups/macosSetup/configFiles/Brewfile"
-
         #restore from bundle
         log('restoring from BrewFile')
         run_bash(f'brew bundle --file=\'{BREW_BUNDLE_FILE}\'')
         log('restoring from BrewFile done')
-    # todo choco
+    # TODO choco
 
 def install_pacakges_with_pip(package_list:str, pkg_m: PackageManager):
     log('installing package list with pip3:')

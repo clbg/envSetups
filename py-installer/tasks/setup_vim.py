@@ -4,17 +4,10 @@ from ..utils.running_platform import Distribution
 from ..utils.color_log import log
 
 def setup_vim(dist:Distribution):
-    install_neovim()
     setup_vimrc()
     install_vim_plug()
     update_vim_plug()
     setup_coc()
-
-
-def install_neovim():
-    log("TODO install neovim...")
-    #TODO
-
 
 def setup_vimrc():
     run_bash('mkdir -p ~/.config/nvim')
@@ -31,14 +24,18 @@ def install_vim_plug():
     
 def update_vim_plug():
     # https://github.com/junegunn/vim-plug/issues/225
-    #for vim
-    run_bash(r"vim -E -s -u '~/.vimrc'  +PlugInstall +qall")
     #for nvim
     # TODO
-    run_bash('nvim --headless +PlugInstall +qall')
+    log('upgrading Plugd')
+    run_bash('nvim --headless +PlugUpgrade +qa')
+    log('updating Plugd')
+    run_bash('nvim --headless +PlugUpdate +qa')
+    log('installling Plugd')
+    run_bash('nvim --headless +PlugInstall +qa')
 
 def setup_coc():
     log("settingup coc")
-    run_bash('nvim --headless  "+CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-python" +qa')
+    run_bash('nvim --headless  "+CocUninstall -sync coc-python" +qa')
+    run_bash('nvim --headless  "+CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-pyright" +qa')
     log("settingup coc done")
 

@@ -7,9 +7,12 @@ def setup_macos():
     setup_karabiner()
 
 def setup_karabiner():
-    log('setuping .confg for karabiner')
+    log('setting up.confg for karabiner')
     soft_link('~/envSetups/macosSetup/linkFiles/HOME-.config-karabiner','~/.config/karabiner')
 
+def setup_yabai():
+    log('setting up yabai')
+    run_bash()
 #def setup_vimrc():
 #    run_bash('mkdir -p ~/.config/nvim')
 #    run_bash('mkdir -p ~/.vim/undodir')

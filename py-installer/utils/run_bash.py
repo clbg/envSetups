@@ -8,5 +8,5 @@ def run_bash_as_sudo(cmd):
 
 def run_bash(cmd):
     '''run bash command'''
-    info(f'\t\t{cmd}')
+    info(f'running bash:  {cmd}')
     return os.system(cmd)

@@ -92,9 +92,6 @@ source $ZSH/oh-my-zsh.sh
 source ~/envSetups/linuxSetup/envvar/aliases
 source ~/envSetups/linuxSetup/envvar/exports
 
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
 if [[  -f "$HOME/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi

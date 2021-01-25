@@ -82,6 +82,7 @@ def setup_nix(dist:Distribution, pkg_m: PackageManager):
     run_zsh('home-manager switch')
     log('setting up home manage done')
 
+    install_packages_with_nix()
 # Uninstall:
 ## nix darwin
 # nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A uninstaller

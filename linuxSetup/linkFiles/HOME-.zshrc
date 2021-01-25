@@ -103,3 +103,7 @@ fi
 
 export PATH=$HOME/.toolbox/bin:$PATH
 if [ -e /Users/pengcheng/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/pengcheng/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+#direnv https://direnv.net/docs/hook.html
+eval "$(direnv hook zsh)"
+

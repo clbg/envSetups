@@ -1,4 +1,4 @@
-from ..utils.run_bash import run_bash, run_bash_as_sudo
+from ..utils.run_bash import run_zsh, run_zsh_as_sudo
 from ..utils.soft_link import soft_link
 from ..utils.running_platform import Distribution
 from ..utils.color_log import log
@@ -12,7 +12,7 @@ def setup_karabiner():
 
 def setup_yabai():
     log('setting up yabai')
-    run_bash()
+    run_zsh()
 #def setup_vimrc():
 #    run_bash('mkdir -p ~/.config/nvim')
 #    run_bash('mkdir -p ~/.vim/undodir')

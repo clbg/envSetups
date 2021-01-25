@@ -1,7 +1,7 @@
 """get your package manager on running device"""
 from enum import Enum
 from .running_platform import Distribution
-from .run_bash import run_bash_as_sudo, run_bash
+from .run_bash import run_zsh_as_sudo, run_zsh
 from .color_log import log
 
 class PackageManager(Enum):
@@ -35,15 +35,15 @@ def update_source(pkg_m: PackageManager):
     """update source like apt update"""
     log("Updating your source")
     if pkg_m == PackageManager.Pacman:
-        run_bash_as_sudo('pacman -Syu - -noconfirm')
+        run_zsh_as_sudo('pacman -Syu - -noconfirm')
     elif pkg_m == PackageManager.Yum:
-        run_bash_as_sudo('yum -y update')
-        run_bash_as_sudo('yum - y upgrade')
-        run_bash_as_sudo('yum -y install epel-release')
+        run_zsh_as_sudo('yum -y update')
+        run_zsh_as_sudo('yum - y upgrade')
+        run_zsh_as_sudo('yum -y install epel-release')
     elif pkg_m == PackageManager.Apt:
-        run_bash_as_sudo('apt update')
+        run_zsh_as_sudo('apt update')
     elif pkg_m == PackageManager.Brew:
-        run_bash('brew update')
+        run_zsh('brew update')
     else:
         log("not support your platform:" + str(pkg_m))
     # todo choco

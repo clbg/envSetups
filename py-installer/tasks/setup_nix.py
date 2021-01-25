@@ -45,11 +45,13 @@ def install_nix_darwin():
     if run_zsh('command -v darwin-rebuild')!=0:
         log('darwin-nix not found, installing:')
         run_zsh('nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer')
-        run_zsh('./result/bin/darwin-installer')
+        run_zsh('yes | ./result/bin/darwin-installer')
     else:
         log('darwin-nix found')
 
     soft_link('~/envSetups/nixSetup/HOME-.config-nixpkgs-darwin-configuration.nix', '~/.nixpkgs/darwin-configuration.nix')
+    run_zsh('nix-channel --update darwin ')
+    run_zsh('darwin-rebuild switch')
 
 def install_packages_with_nix():
         run_zsh(f'nix-env -i {NIX_PACKAGES_TO_INSTALL}')

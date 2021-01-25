@@ -7,7 +7,7 @@ from ..utils.color_log import err,log
 
 def run_zsh_as_sudo(cmd):
     '''run zsh command with sudo'''
-    return os.system(f'sudo {cmd}')
+    return run_zsh(f'sudo {cmd}')
 
 def run_zsh(cmd):
     '''run zsh command'''

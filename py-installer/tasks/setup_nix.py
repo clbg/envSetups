@@ -56,7 +56,7 @@ def install_nix_darwin():
 def install_packages_with_nix():
         run_zsh(f'nix-env -i {NIX_PACKAGES_TO_INSTALL}')
 
-def install_home_manager():
+def install_home_manager(dist:Distribution, pkg_m: PackageManager):
     if run_zsh('command -v home-manager')!=0:
         log('home manager not found, installing...')
         run_zsh('nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager')
@@ -64,14 +64,19 @@ def install_home_manager():
         run_zsh("nix-shell '<home-manager>' -A install")
     else:
         log('home manager found.')
-    soft_link('~/envSetups/nixSetup/HOME-.config-nixpkgs-home.nix','~/.config/nixpkgs/home.nix')
+
+    if dist == Distribution.MacOS:
+        soft_link('~/envSetups/nixSetup/HOME-.config-nixpkgs-home.macos.nix','~/.config/nixpkgs/home.nix')
+    else:
+        soft_link('~/envSetups/nixSetup/HOME-.config-nixpkgs-home.linux.nix','~/.config/nixpkgs/home.nix')
+    run_zsh('home-manager switch')
 
 
 def setup_nix(dist:Distribution, pkg_m: PackageManager):
     install_nix(dist,pkg_m)
     if dist == Distribution.MacOS :
         install_nix_darwin()
-    install_home_manager()
+    install_home_manager(dist,pkg_m)
 
     log('setting up home manager...')
     run_zsh('home-manager switch')

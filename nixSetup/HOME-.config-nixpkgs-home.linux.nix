@@ -11,7 +11,7 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   home.username = "$USER";
-  home.homeDirectory = "$HOME";
+  home.homeDirectory = "/home/$USER";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

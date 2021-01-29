@@ -8,6 +8,7 @@ class PackageManager(Enum):
     """This is a Package Manager Enum."""
     Apt = "apt"
     Brew = "brew"
+    LinuxBrew = "linuxBrew"
     Choco = "choco"
     Pacman = "pacman"
     Yum = "yum"
@@ -17,7 +18,8 @@ class PackageManager(Enum):
 def get_package_manager(dist: Distribution):
     """get package manager like yum/pacman/apt/choco/brew"""
     if dist == Distribution.Amazon:
-        return PackageManager.Yum
+        #return PackageManager.Yum
+        return PackageManager.LinuxBrew
     if dist == Distribution.Arch:
         return PackageManager.Pacman
     if dist == Distribution.Debian or dist == Distribution.Ubuntu:
@@ -42,7 +44,7 @@ def update_source(pkg_m: PackageManager):
         run_zsh_as_sudo('yum -y install epel-release')
     elif pkg_m == PackageManager.Apt:
         run_zsh_as_sudo('apt update')
-    elif pkg_m == PackageManager.Brew:
+    elif pkg_m == PackageManager.Brew or pkg_m == PackageManager.LinuxBrew:
         run_zsh('brew update')
     else:
         log("not support your platform:" + str(pkg_m))

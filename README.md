@@ -35,12 +35,6 @@ some reg files with config on windows
 ```
 git remote set-url origin git@github.com:pengchengbuaa/envSetups.git
 ```
-
-### update brewFile
-```
-brew bundle dump --describe --force --file="~/envSetups/macosSetup/configFiles/Brewfile"
-
-```
 ### switching to tunna mirror of brew
 ```
 git -C "$(brew --repo)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git

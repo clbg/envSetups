@@ -9,7 +9,8 @@ PM_PKGLIST_DICT = {
     PackageManager.Pacman: 'python-pynvim ',
     PackageManager.Apt: 'python3-neovim ',
     PackageManager.Yum: '',
-    PackageManager.Brew: 'google-chrome iterm2 karabiner-elements kicad kindle telegram wechat'
+    PackageManager.Brew: 'google-chrome iterm2 karabiner-elements kicad kindle telegram wechat',
+    PackageManager.LinuxBrew: ''
 }
 
 PIP_PKG_LIST = ''
@@ -17,7 +18,7 @@ PIP_PKG_LIST = ''
 BREW_BUNDLE_FILE = '~/envSetups/macosSetup/configFiles/BrewFile'
 
 def prepare_package_manager(dist:Distribution, pkg_m:PackageManager):
-    if pkg_m == PackageManager.Brew:
+    if pkg_m == PackageManager.Brew or pkg_m== PackageManager.LinuxBrew:
         #Install brew if not exist
         if run_zsh('command -v brew')!=0:
             log('installing hoembrew...')
@@ -43,6 +44,8 @@ def install_packages_with_package_manager(package_list: str, pkg_m: PackageManag
     if pkg_m == PackageManager.Yum:
         run_zsh_as_sudo(f'yum -y install {package_list}')
     if pkg_m == PackageManager.Brew:
+        run_zsh(f'brew install {package_list}')
+    if pkg_m == PackageManager.LinuxBrew:
         run_zsh(f'brew install {package_list}')
     # TODO choco
 

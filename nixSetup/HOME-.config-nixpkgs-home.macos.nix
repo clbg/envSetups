@@ -5,6 +5,9 @@
     pkgs.htop
     pkgs.direnv
     pkgs.fortune
+    pkgs.nodePackages.pyright
+    pkgs.nodePackages.typescript
+    pkgs.nodePackages.typescript-language-server
   ];
 
 

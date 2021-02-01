@@ -7,7 +7,9 @@ def setup_vim(dist:Distribution):
     setup_vimrc()
     install_vim_plug()
     update_vim_plug()
-    setup_coc()
+
+def install_neovim():
+    run_zsh('brew install --HEAD neovim')
 
 def setup_vimrc():
     run_zsh('mkdir -p ~/.config/nvim')
@@ -32,10 +34,4 @@ def update_vim_plug():
     run_zsh('nvim --headless +PlugUpdate +qa')
     log('installling Plugd')
     run_zsh('nvim --headless +PlugInstall +qa')
-
-def setup_coc():
-    log("settingup coc")
-    run_zsh('nvim --headless  "+CocUninstall -sync coc-python" +qa')
-    run_zsh('nvim --headless  "+CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-pyright" +qa')
-    log("settingup coc done")
 

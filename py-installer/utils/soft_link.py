@@ -15,7 +15,9 @@ def soft_link(source_file:str, target_file:str):
     """
     source_file =  os.path.expanduser(source_file)
     target_file =  os.path.expanduser(target_file)
-    if os.path.isfile(target_file) and not os.path.islink(target_file):
+    if os.path.islink(target_file):
+        run_zsh(f'rm {target_file}')
+    if os.path.isfile(target_file) or os.path.isdir(target_file):
         log(f'renaming {target_file} {target_file}.bak')
         os.rename(target_file, target_file+'.bak')
     run_zsh(f'ln -sf {source_file} {target_file}')

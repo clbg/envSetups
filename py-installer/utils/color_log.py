@@ -1,6 +1,7 @@
 GREEN = "\033[0;32m"
 RED = "\033[0;31m"
 LIGHT_CYAN = "\033[1;36m"
+LIGHT_BLUE = "\033[1;34m"
 RESET = "\033[0;0m"
 
 # Color Table
@@ -17,7 +18,7 @@ def log(log:str):
     print(f'{GREEN}{log}{RESET}')
 
 def info(info:str):
-    print(f'{LIGHT_CYAN}{info}{RESET}')
+    print(f'{LIGHT_BLUE}{info}{RESET}')
 
 def err(error:str):
     print(f'{RED}{error}{RESET}')

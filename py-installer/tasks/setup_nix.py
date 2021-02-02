@@ -6,7 +6,7 @@ from ..utils.run_bash import run_zsh_as_sudo, run_zsh
 from ..utils.color_log import log,err
 
 NIX_PACKAGES_TO_INSTALL = "tmux vim git zsh curl wget mosh rsync \
-        neovim nodejs autojump silver-searcher openssh icdiff fzf"
+        nodejs autojump silver-searcher openssh icdiff fzf"
 
 def install_nix(dist:Distribution,pkg_m:PackageManager):
     if run_zsh('command -v nix-env')!=0:

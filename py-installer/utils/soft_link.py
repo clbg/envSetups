@@ -1,5 +1,5 @@
 """to get platform of running platform"""
-from .run_bash import run_zsh, run_zsh_as_sudo
+from .run_bash import run_zsh
 from .color_log import log
 import os
 

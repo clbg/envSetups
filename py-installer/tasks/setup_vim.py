@@ -4,6 +4,7 @@ from ..utils.running_platform import Distribution
 from ..utils.color_log import log
 
 def setup_vim(dist:Distribution):
+    install_neovim()
     setup_vimrc()
     install_vim_plug()
     update_vim_plug()

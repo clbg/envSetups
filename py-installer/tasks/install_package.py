@@ -3,6 +3,7 @@ from ..utils.package_manager import PackageManager, update_source
 from ..utils.running_platform import Distribution
 from ..utils.run_bash import run_zsh_as_sudo, run_zsh
 from ..utils.color_log import log,err
+from ..installerConfig import InstallerConfig
 
 PM_PKGLIST_DICT = {
    # silver_searcher is code searcher https://github.com/ggreer/the_silver_searcher#installing
@@ -26,7 +27,9 @@ def prepare_package_manager(dist:Distribution, pkg_m:PackageManager):
             log('installing hoembrew done...')
     # TODO choco
  
-def install_packages(dist:Distribution, pkg_m: PackageManager):
+def install_packages(installerConfig:InstallerConfig):
+    dist = installerConfig.dist
+    pkg_m = installerConfig.get_dist_package_manager()
     pkg_list = PM_PKGLIST_DICT[pkg_m]
     prepare_package_manager(dist,pkg_m)
     update_source(pkg_m)

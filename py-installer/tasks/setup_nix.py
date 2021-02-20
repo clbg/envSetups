@@ -4,6 +4,7 @@ from ..utils.soft_link import soft_link
 from ..utils.running_platform import Distribution
 from ..utils.run_bash import run_zsh_as_sudo, run_zsh
 from ..utils.color_log import log,err
+from ..installerConfig import InstallerConfig
 
 NIX_PACKAGES_TO_INSTALL = "tmux vim git zsh curl wget mosh rsync \
         nodejs autojump silver-searcher openssh icdiff fzf"
@@ -72,8 +73,10 @@ def install_home_manager(dist:Distribution, pkg_m: PackageManager):
     run_zsh('home-manager switch')
 
 
-def setup_nix(dist:Distribution, pkg_m: PackageManager):
-    install_nix(dist,pkg_m)
+def setup_nix(installerConfig:InstallerConfig):
+    dist = installerConfig.dist
+    pkg_m = installerConfig.get_dist_package_manager()
+    install_nix(dist= dist,pkg_m=pkg_m)
     if dist == Distribution.MacOS :
         install_nix_darwin()
     install_home_manager(dist,pkg_m)

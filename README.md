@@ -17,7 +17,12 @@ python scripts to setup computer, reference assets in linuxSetup/macosSetup/wind
 make sure you have pip3 installed before run 
 ```
 curl -sL chengpeng.space/i | bash
+```
 
+if you want setup mirror 
+
+```
+export ENV_SETUP_MIRROR=CN && curl -sL chengpeng.space/i | bash
 ```
 
 ## linuxSetup

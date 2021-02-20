@@ -30,3 +30,7 @@ def get_distribution():
         except ValueError:
             dist = Distribution.Unknown
         return dist
+
+def get_major_version():
+    """get distro major version"""
+    return distro.major_version()

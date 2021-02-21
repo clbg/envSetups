@@ -28,6 +28,7 @@ def install_nix(dist:Distribution,pkg_m:PackageManager):
         run_zsh('nix-channel --remove nixpkgs')
         run_zsh('nix-channel --add https://nixos.org/channels/nixos-20.09 nixpkgs')
     run_zsh('nix-channel --update')
+    run_zsh('souce ~/.nix-profile/etc/profile.d/nix.sh')
 
 
         # TODO gen dir 

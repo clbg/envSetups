@@ -2,7 +2,7 @@ import sys
 from ..utils.package_manager import PackageManager, update_source
 from ..utils.soft_link import soft_link
 from ..utils.running_platform import Distribution
-from ..utils.run_bash import run_zsh_as_sudo, run_zsh
+from ..utils.run_bash import run_zsh_as_sudo, run_zsh, source_file
 from ..utils.color_log import log,err
 from ..installerConfig import InstallerConfig
 
@@ -28,7 +28,7 @@ def install_nix(dist:Distribution,pkg_m:PackageManager):
         run_zsh('nix-channel --remove nixpkgs')
         run_zsh('nix-channel --add https://nixos.org/channels/nixos-20.09 nixpkgs')
     run_zsh('nix-channel --update')
-    run_zsh('souce ~/.nix-profile/etc/profile.d/nix.sh')
+    source_file( '~/.nix-profile/etc/profile.d/nix.sh',['HOME','USER'])
 
 
         # TODO gen dir 

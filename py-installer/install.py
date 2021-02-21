@@ -13,6 +13,7 @@ major_version =  int(get_major_version())
 
 installerConfig = InstallerConfig(dist,major_version)
 
+
 setup_nix(installerConfig)
 install_packages(installerConfig)
 setup_ssh()

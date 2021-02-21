@@ -3,13 +3,23 @@ from .utils.package_manager import PackageManager
 from .utils.color_log import log
 
 import os
+
+PKGLIST_FOR_NATIVE_PKG_M_DICT = {
+   # silver_searcher is code searcher https://github.com/ggreer/the_silver_searcher#installing
+   Distribution.Amazon: 'icdiff',
+   Distribution.Debian: 'ssh',
+   Distribution.Ubuntu: 'python3-neovim',
+   Distribution.Arch: 'python-pynvim',
+   Distribution.MacOS: 'google-chrome iterm2 karabiner-elements kicad kindle telegram wechat',
+}
+
 class InstallerConfig(object):
 
     def __init__(self,dist:Distribution,  major_version:int) :
         self.dist=dist
         self.major_version= major_version
 
-    def get_dist_package_manager(self):
+    def get_native_package_manager(self):
         """get package manager like yum/pacman/apt/choco/brew"""
         if self.dist == Distribution.Amazon:
            return PackageManager.Yum
@@ -24,6 +34,19 @@ class InstallerConfig(object):
         else:
             log("Unknown Package manager in your self.distribution:" + str(self.dist))
             return PackageManager.UnKnown
+
+    def get_native_package_manager_install_list(self):
+        return  PKGLIST_FOR_NATIVE_PKG_M_DICT[self.dist]
+
+    def get_secondary_package_manager(self):
+        if self.dist == Distribution.MacOS:
+            return PackageManager.UnKnown
+        if self.dist == Distribution.Windows:
+            return PackageManager.UnKnown
+        return PackageManager.LinuxBrew
+
+    def get_secondary_package_manager_install_list(self):
+        return ''
 
     def is_mirror_cn(self):
         """ get if is running in cn """

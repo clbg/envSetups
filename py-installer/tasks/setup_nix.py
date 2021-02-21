@@ -76,7 +76,7 @@ def install_home_manager(dist:Distribution, pkg_m: PackageManager):
 
 def setup_nix(installerConfig:InstallerConfig):
     dist = installerConfig.dist
-    pkg_m = installerConfig.get_dist_package_manager()
+    pkg_m = installerConfig.get_native_package_manager()
     install_nix(dist= dist,pkg_m=pkg_m)
     if dist == Distribution.MacOS :
         install_nix_darwin()

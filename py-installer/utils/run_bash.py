@@ -1,5 +1,6 @@
 '''running bash commands'''
 import os
+import sys
 import subprocess
 from sys import stdin
 from ..utils.color_log import info
@@ -38,3 +39,10 @@ def source_file(filePath, savedVar=[]):
     proc.communicate()
     log('full env:')
     pprint.pprint(dict(os.environ))
+
+def export_env(env_name, env_value):
+    log(f'exporting env {env_name} with value {env_value}')
+    os.environ[env_name] = env_value
+
+def exit_install():
+    sys.exit('installed nix, please start a new terminal and rerun this script')

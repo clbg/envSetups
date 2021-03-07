@@ -15,7 +15,7 @@ def install_nix(dist:Distribution,pkg_m:PackageManager):
             run_zsh('sh <(curl -L https://nixos.org/nix/install)  --darwin-use-unencrypted-nix-store-volume --no-daemon')
         else:
             run_zsh('sh <(curl -L https://nixos.org/nix/install) --no-daemon ')
-        exit_install()
+        exit_install('nix installed, please logout and login to make sure nix-* is in you path. then rerun install script')
     else:
         log('found nix')
 

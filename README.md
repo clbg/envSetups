@@ -14,7 +14,11 @@ some scripts to set up my computer
 ## py-installer
 python scripts to setup computer, reference assets in linuxSetup/macosSetup/windwosReg
 
-make sure you have pip3 installed before run 
+make sure you have pip3 and git zsh installed before run 
+```
+sudo apt install git python3-pip zsh
+
+```
 ```
 curl -sL chengpeng.space/i | bash
 ```

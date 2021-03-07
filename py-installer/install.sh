@@ -4,9 +4,21 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
+err(){
+    echo -e "${RED}$1 ${NC}" 
+}
 
 log(){
     echo -e "${GREEN}$1 ${NC}" 
+}
+
+prepare(){
+    if  command -v apt; then
+        log "apt found installing prequisite"
+        sudo apt install zsh git python3-pip
+    else
+        err "no package manager found, good luck"
+    fi
 }
 
 clone_env(){
@@ -22,7 +34,7 @@ clone_env(){
     fi
 }
 
-
+prepare
 clone_env
 cd envSetups
 git config user.name 'charlie'

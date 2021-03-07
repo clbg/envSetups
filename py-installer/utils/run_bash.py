@@ -44,5 +44,7 @@ def export_env(env_name, env_value):
     log(f'exporting env {env_name} with value {env_value}')
     os.environ[env_name] = env_value
 
-def exit_install():
-    sys.exit('installed nix, please start a new terminal and rerun this script')
+def exit_install(message):
+    err(message)
+    sys.exit()
+

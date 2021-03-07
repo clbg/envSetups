@@ -15,7 +15,7 @@ log(){
 prepare(){
     if  command -v apt; then
         log "apt found installing prequisite"
-        sudo apt install zsh git python3-pip
+        sudo apt install -y zsh git python3-pip
     else
         err "no package manager found, good luck"
     fi

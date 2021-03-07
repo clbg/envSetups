@@ -13,23 +13,21 @@ def install_nix(dist:Distribution,pkg_m:PackageManager):
     if run_zsh('command -v nix-env')!=0:
         if dist == Distribution.MacOS:
             run_zsh('sh <(curl -L https://nixos.org/nix/install)  --darwin-use-unencrypted-nix-store-volume --no-daemon')
+
+            log('updating source to 20.09')
+            run_zsh('nix-channel --remove nixpkgs')
+            run_zsh('nix-channel --add https://nixos.org/channels/nixpkgs-20.09-darwin  nixpkgs')
         else:
             run_zsh('sh <(curl -L https://nixos.org/nix/install) --no-daemon ')
-        exit_install('nix installed, please logout and login to make sure nix-* is in you path. then rerun install script')
+            log('updating source to 20.09')
+            run_zsh('nix-channel --remove nixpkgs')
+            run_zsh('nix-channel --add https://nixos.org/channels/nixos-20.09 nixpkgs')
+        exit_install('nix installed, please source .profile or logout and login to make sure nix-* is in you path. then rerun install script')
     else:
         log('found nix')
 
-    run_zsh('. ~/.nix-profile/etc/profile.d/nix.sh')
     #after install 
-    log('updating source to 20.09')
-    if dist == Distribution.MacOS:
-        run_zsh('nix-channel --remove nixpkgs')
-        run_zsh('nix-channel --add https://nixos.org/channels/nixpkgs-20.09-darwin  nixpkgs')
-    else:
-        run_zsh('nix-channel --remove nixpkgs')
-        run_zsh('nix-channel --add https://nixos.org/channels/nixos-20.09 nixpkgs')
     run_zsh('nix-channel --update')
-
 
 
         # TODO gen dir 

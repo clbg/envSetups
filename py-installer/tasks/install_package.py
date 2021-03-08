@@ -37,19 +37,19 @@ def install_packages_with_package_manager(package_list: str, pkg_m: PackageManag
     if bool(package_list.strip()):
         log('empty list, returning')
         return
-
-    log(package_list)
-    if pkg_m == PackageManager.Pacman:
-        run_zsh_as_sudo(f'pacman -s {package_list} --noconfirm')
-    if pkg_m == PackageManager.Apt:
-        run_zsh_as_sudo(f'apt -y install {package_list}')
-    if pkg_m == PackageManager.Yum:
-        run_zsh_as_sudo(f'yum -y install {package_list}')
-    if pkg_m == PackageManager.Brew:
-        run_zsh(f'brew install {package_list}')
-    if pkg_m == PackageManager.LinuxBrew:
-        run_zsh(f'brew install {package_list}')
-    # TODO choco
+    else:
+        log(package_list)
+        if pkg_m == PackageManager.Pacman:
+            run_zsh_as_sudo(f'pacman -s {package_list} --noconfirm')
+        if pkg_m == PackageManager.Apt:
+            run_zsh_as_sudo(f'apt -y install {package_list}')
+        if pkg_m == PackageManager.Yum:
+            run_zsh_as_sudo(f'yum -y install {package_list}')
+        if pkg_m == PackageManager.Brew:
+            run_zsh(f'brew install {package_list}')
+        if pkg_m == PackageManager.LinuxBrew:
+            run_zsh(f'brew install {package_list}')
+        # TODO choco
 
 #def install_pacakges_with_pip(package_list:str, pkg_m: PackageManager):
 #    log('installing package list with pip3:')

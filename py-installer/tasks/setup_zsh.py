@@ -6,8 +6,8 @@ def setup_zsh():
     log("Installing Oh my ZSH")
     run_zsh('rm -rf ~/ohmyzsh')
     install_oh_my_zsh()
-    log('Linking files')
     link_zsh_files()
+    chsh()
     log("Setting up ZSH done")
 
 def install_oh_my_zsh():
@@ -15,8 +15,11 @@ def install_oh_my_zsh():
     run_zsh('zsh ~/ohmyzsh/tools/install.sh',True)
 
 def link_zsh_files():
-    log("update your zshrc")
+    log('Linking files update your zshrc')
     soft_link('~/envSetups/linuxSetup/linkFiles/HOME-.zshrc', '~/.zshrc')
 
-def install_fzf():
-    log('installing fzf')
+def chsh():
+    log("changing default shell to zsh")
+    run_zsh('chsh -s /bin/zsh')
+    
+

@@ -9,6 +9,7 @@ def install_homebrew():
         log('installing hoembrew...')
         run_zsh('/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
         log('installing hoembrew done...')
+        run_zsh('eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"')
 
 def prepare_package_manager(installerConfig:InstallerConfig):
     install_homebrew()

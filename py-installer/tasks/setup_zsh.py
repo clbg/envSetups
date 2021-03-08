@@ -1,4 +1,5 @@
-from ..utils.run_bash import run_zsh
+from ..utils.run_bash import run_zsh, run_zsh_interactive
+import os
 from ..utils.soft_link import soft_link
 from ..utils.color_log import log 
 def setup_zsh():
@@ -19,7 +20,10 @@ def link_zsh_files():
     soft_link('~/envSetups/linuxSetup/linkFiles/HOME-.zshrc', '~/.zshrc')
 
 def chsh():
-    log("changing default shell to zsh")
-    run_zsh('chsh -s /bin/zsh')
+    if 'zsh' not in os.getenv('SHELL'):
+        log('zsh is not your default shell, changing with chsh')
+        run_zsh_interactive('chsh -s /bin/zsh')
+    else:
+        log("you are under zsh")
     
 

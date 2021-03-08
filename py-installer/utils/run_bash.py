@@ -14,10 +14,14 @@ def run_zsh_as_sudo(cmd):
 
 def run_zsh(cmd,ignore_error = False):
     '''run zsh command'''
-    info(f'running zsh:  {cmd}')
-
+    info(f'running zsh: {cmd}')
     process = subprocess.run('zsh' , input = bytes(cmd,'utf-8'), shell = True,check = not ignore_error)
+    return process.returncode
 
+def run_zsh_interactive(cmd, ignore_error = False):
+    '''run zsh command interactive'''
+    info(f'running zsh interactive: {cmd}')
+    process = subprocess.run(f'{cmd}', shell = True, check= not ignore_error)
     return process.returncode
 
 def source_file(filePath, savedVar=[]):

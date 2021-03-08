@@ -22,7 +22,7 @@ def update_source(pkg_m: PackageManager):
         run_zsh_as_sudo('pacman -Syu - -noconfirm')
     elif pkg_m == PackageManager.Yum:
         run_zsh_as_sudo('yum -y update')
-        run_zsh_as_sudo('yum - y upgrade')
+        run_zsh_as_sudo('yum -y upgrade')
         run_zsh_as_sudo('yum -y install epel-release')
     elif pkg_m == PackageManager.Apt:
         run_zsh_as_sudo('apt update')

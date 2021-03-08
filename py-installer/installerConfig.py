@@ -6,10 +6,10 @@ import os
 
 PKGLIST_FOR_NATIVE_PKG_M_DICT = {
    # silver_searcher is code searcher https://github.com/ggreer/the_silver_searcher#installing
-   Distribution.Amazon: 'icdiff',
-   Distribution.Debian: 'ssh',
-   Distribution.Ubuntu: 'python3-neovim',
-   Distribution.Arch: 'python-pynvim',
+   Distribution.Amazon: '',
+   Distribution.Debian: '',
+   Distribution.Ubuntu: '',
+   Distribution.Arch: '',
    Distribution.MacOS: 'google-chrome iterm2 karabiner-elements kicad kindle telegram wechat',
 }
 

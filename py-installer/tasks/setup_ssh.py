@@ -13,7 +13,7 @@ def setup_ssh():
 
 def append_public_key():
     log('appending key')
-    if run_zsh(f'grep -qiFf  {PUBLIC_KEY_PATH} /$HOME/.ssh/authorized_keys') != 0:
+    if run_zsh(f'grep -qiFf  {PUBLIC_KEY_PATH} /$HOME/.ssh/authorized_keys',True) != 0:
         log("appending key")
         run_zsh(f'cat {PUBLIC_KEY_PATH} >> $HOME/.ssh/authorized_keys')
     else:

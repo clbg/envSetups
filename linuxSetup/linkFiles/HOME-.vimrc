@@ -88,6 +88,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "nix
 Plug 'LnL7/vim-nix'
+Plug 'vim-test/vim-test'
 
 call plug#end()
 
@@ -116,6 +117,22 @@ nmap <leader>gs :G<CR>
 
 " for nerdTree
 map <C-n> :NERDTreeToggle<CR>
+
+"for vim-test
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+
+
+" for neovim
+let test#strategy = "neovim"
+let test#neovim#term_position = "topleft"
+let test#neovim#term_position = "vert"
+let test#neovim#term_position = "vert botright 100"
+" or for Vim8
+
 
 
 

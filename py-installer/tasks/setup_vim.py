@@ -41,6 +41,6 @@ def update_vim_plug():
 def setup_coc():	
     log("settingup coc")	
     run_zsh('nvim --headless  "+CocUninstall -sync coc-python" +qa')	
-    run_zsh('nvim --headless  "+CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-pyright" +qa')	
+    run_zsh('nvim --headless  "+CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-pyright coc-eslint" +qa')	
     log("settingup coc done")	
 

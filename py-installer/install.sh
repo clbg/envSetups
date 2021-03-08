@@ -23,10 +23,10 @@ prepare(){
 
 install_distro(){
     if python3 -c 'import distro'; then 
+        log 'distro found'
+    else 
         log 'distro not installed, installing...'
         sudo pip3 install distro
-    else 
-        log 'distro found'
     fi
 }
 

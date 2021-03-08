@@ -15,13 +15,13 @@ def install_nix(dist:Distribution,pkg_m:PackageManager):
             run_zsh('sh <(curl -L https://nixos.org/nix/install)  --darwin-use-unencrypted-nix-store-volume --no-daemon')
 
             log('updating source to 20.09')
-            run_zsh('nix-channel --remove nixpkgs')
-            run_zsh('nix-channel --add https://nixos.org/channels/nixpkgs-20.09-darwin  nixpkgs')
+            #run_zsh('nix-channel --remove nixpkgs')
+            #run_zsh('nix-channel --add https://nixos.org/channels/nixpkgs-20.09-darwin  nixpkgs')
         else:
             run_zsh('sh <(curl -L https://nixos.org/nix/install) --no-daemon ')
             log('updating source to 20.09')
-            run_zsh('nix-channel --remove nixpkgs')
-            run_zsh('nix-channel --add https://nixos.org/channels/nixos-20.09 nixpkgs')
+            #run_zsh('nix-channel --remove nixpkgs')
+            #run_zsh('nix-channel --add https://nixos.org/channels/nixos-20.09 nixpkgs')
         exit_install('nix installed, please source .profile or logout and login to make sure nix-* is in you path. then rerun install script')
     else:
         log('found nix')
@@ -60,7 +60,8 @@ def install_packages_with_nix():
 def install_home_manager(dist:Distribution, pkg_m: PackageManager):
     if run_zsh('command -v home-manager')!=0:
         log('home manager not found, installing...')
-        run_zsh('nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager')
+        run_zsh('nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager')
+        #run_zsh('nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager')
         run_zsh('nix-channel --update')
         run_zsh("nix-shell '<home-manager>' -A install")
     else:
@@ -85,7 +86,7 @@ def setup_nix(installerConfig:InstallerConfig):
     run_zsh('home-manager switch')
     log('setting up home manage done')
 
-    install_packages_with_nix()
+    #install_packages_with_nix()
 
 # Uninstall:
 ## nix darwin

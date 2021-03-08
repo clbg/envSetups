@@ -21,6 +21,15 @@ prepare(){
     fi
 }
 
+install_distro(){
+    if python3 -c 'import distro'; then 
+        log 'distro not installed, installing...'
+        sudo pip3 install distro
+    else 
+        log 'distro found'
+    fi
+}
+
 clone_env(){
     cd ~
     if  [ -e envSetups ]; then
@@ -34,10 +43,14 @@ clone_env(){
     fi
 }
 
+
+
 prepare
+install_distro
+
 clone_env
 cd envSetups
 git config user.name 'charlie'
 git config user.email 'spam@chengpeng.space'
-sudo pip3 install distro
+
 python3 -m py-installer.install

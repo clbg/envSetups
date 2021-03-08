@@ -1,20 +1,15 @@
 { config, pkgs, ... }:
-
+let
+   commonPackages = (import ~/envSetups/nixSetup/commonPackages.nix) { inherit pkgs; };
+in
 {
-  home.packages = [
-    pkgs.htop
-    pkgs.direnv
-    pkgs.fortune
-    pkgs.nodePackages.pyright
-    pkgs.nodePackages.typescript
-    pkgs.nodePackages.typescript-language-server
-  ];
-
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   home.username = "$USER";
   home.homeDirectory = "/Users/$USER";
+
+  home.packages =   commonPackages.packages ++ [ ];
+
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

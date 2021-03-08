@@ -86,6 +86,8 @@ Plug 'jiangmiao/auto-pairs'
 "Plug 'nvim-lua/completion-nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+"nix
+Plug 'LnL7/vim-nix'
 
 call plug#end()
 

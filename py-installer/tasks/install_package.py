@@ -1,15 +1,19 @@
 from ..utils.package_manager import PackageManager, update_source
-from ..utils.run_bash import run_zsh_as_sudo, run_zsh
+from ..utils.run_bash import run_zsh_as_sudo, run_zsh, exit_install
 from ..utils.color_log import log
 from ..installerConfig import InstallerConfig
 
 def install_homebrew():
     #Install brew if not exist
     if run_zsh('command -v brew', True)!=0:
-        log('installing hoembrew...')
+        log('brew not found, installing hoembrew...')
         run_zsh('/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
         log('installing hoembrew done...')
-        run_zsh('eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"')
+        exit_install('brew installed, please get a new zsh. then rerun install script')
+    else:
+        log('brew found')
+ 
+
 
 def prepare_package_manager(installerConfig:InstallerConfig):
     install_homebrew()

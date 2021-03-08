@@ -29,15 +29,13 @@ def install_packages(installerConfig:InstallerConfig):
     #with secondary installer
     secondary_pkg_m  = installerConfig.get_secondary_package_manager()
     secondary_install_pkg_list = installerConfig.get_secondary_package_manager_install_list()
+    
     install_packages_with_package_manager(secondary_install_pkg_list,secondary_pkg_m)
         
 def install_packages_with_package_manager(package_list: str, pkg_m: PackageManager):
     '''install a list of package with package manager'''
     log('installing package list:')
     if bool(package_list.strip()):
-        log('empty list, returning')
-        return
-    else:
         log(package_list)
         if pkg_m == PackageManager.Pacman:
             run_zsh_as_sudo(f'pacman -s {package_list} --noconfirm')
@@ -49,6 +47,11 @@ def install_packages_with_package_manager(package_list: str, pkg_m: PackageManag
             run_zsh(f'brew install {package_list}')
         if pkg_m == PackageManager.LinuxBrew:
             run_zsh(f'brew install {package_list}')
+    else:
+        log('empty list, returning')
+ 
+
+
         # TODO choco
 
 #def install_pacakges_with_pip(package_list:str, pkg_m: PackageManager):

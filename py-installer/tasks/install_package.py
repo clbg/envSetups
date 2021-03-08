@@ -34,6 +34,10 @@ def install_packages(installerConfig:InstallerConfig):
 def install_packages_with_package_manager(package_list: str, pkg_m: PackageManager):
     '''install a list of package with package manager'''
     log('installing package list:')
+    if bool(package_list.strip()):
+        log('empty list, returning')
+        return
+
     log(package_list)
     if pkg_m == PackageManager.Pacman:
         run_zsh_as_sudo(f'pacman -s {package_list} --noconfirm')

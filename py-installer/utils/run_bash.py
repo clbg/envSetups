@@ -19,9 +19,10 @@ def run_zsh(cmd,ignore_error = False):
     return process.returncode
 
 def run_zsh_interactive(cmd, ignore_error = False):
+    '''not so good, be cautious'''
     '''run zsh command interactive'''
     info(f'running zsh interactive: {cmd}')
-    process = subprocess.run(f'{cmd}', shell = True, check= not ignore_error)
+    process = subprocess.run('cat' , shell = True, check= not ignore_error)
     return process.returncode
 
 def source_file(filePath, savedVar=[]):

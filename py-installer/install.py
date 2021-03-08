@@ -15,9 +15,9 @@ installerConfig = InstallerConfig(dist,major_version)
 
 
 setup_nix(installerConfig)
+setup_zsh()
 install_packages(installerConfig)
 setup_ssh()
-setup_zsh()
 setup_vim(dist)
 
 if dist== Distribution.MacOS:

@@ -8,7 +8,7 @@ from ..utils.color_log import log,err
 BREW_BUNDLE_FILE = '~/envSetups/macosSetup/configFiles/BrewFile'
 
 def install_nix_darwin():
-    if run_zsh('command -v darwin-rebuild')!=0:
+    if run_zsh('command -v darwin-rebuild', True)!=0:
         log('installing nix-darwin ...')
         run_zsh('nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer')
         run_zsh('./result/bin/darwin-installer')

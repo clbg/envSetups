@@ -10,7 +10,7 @@ NIX_PACKAGES_TO_INSTALL = "tmux vim git zsh curl wget mosh rsync \
         nodejs autojump silver-searcher openssh icdiff fzf"
 
 def install_nix(dist:Distribution,pkg_m:PackageManager):
-    if run_zsh('command -v nix-env')!=0:
+    if run_zsh('command -v nix-env', True)!=0:
         if dist == Distribution.MacOS:
             run_zsh('sh <(curl -L https://nixos.org/nix/install)  --darwin-use-unencrypted-nix-store-volume --no-daemon')
 
@@ -43,7 +43,7 @@ def install_nix(dist:Distribution,pkg_m:PackageManager):
         # sys.exit()
 
 def install_nix_darwin():
-    if run_zsh('command -v darwin-rebuild')!=0:
+    if run_zsh('command -v darwin-rebuild', True)!=0:
         log('darwin-nix not found, installing:')
         run_zsh('nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer')
         run_zsh('yes | ./result/bin/darwin-installer')
@@ -58,7 +58,7 @@ def install_packages_with_nix():
         run_zsh(f'nix-env -i {NIX_PACKAGES_TO_INSTALL}')
 
 def install_home_manager(dist:Distribution, pkg_m: PackageManager):
-    if run_zsh('command -v home-manager')!=0:
+    if run_zsh('command -v home-manager', True)!=0:
         log('home manager not found, installing...')
         run_zsh('nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager')
         #run_zsh('nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager')

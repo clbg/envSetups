@@ -5,7 +5,7 @@ from ..installerConfig import InstallerConfig
 
 def install_homebrew():
     #Install brew if not exist
-    if run_zsh('command -v brew')!=0:
+    if run_zsh('command -v brew', True)!=0:
         log('installing hoembrew...')
         run_zsh('/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
         log('installing hoembrew done...')

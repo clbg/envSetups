@@ -1,4 +1,5 @@
 set -x
+set -e
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -13,7 +14,7 @@ log(){
 }
 
 prepare(){
-    if  command -v apt; then
+    if  apt -v; then
         log "apt found installing prequisite"
         sudo apt install -y zsh git python3-pip
     else

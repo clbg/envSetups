@@ -6,8 +6,8 @@ from ..utils.run_bash import export_env, run_zsh_as_sudo, run_zsh, source_file, 
 from ..utils.color_log import log,err
 from ..installerConfig import InstallerConfig
 
-NIX_PACKAGES_TO_INSTALL = "tmux vim git zsh curl wget mosh rsync \
-        nodejs autojump silver-searcher openssh icdiff fzf"
+#NIX_PACKAGES_TO_INSTALL = "tmux vim git zsh curl wget mosh rsync \
+#        nodejs autojump silver-searcher openssh icdiff fzf"
 
 def install_nix(dist:Distribution,pkg_m:PackageManager):
     if run_zsh('command -v nix-env', True)!=0:
@@ -54,8 +54,8 @@ def install_nix_darwin():
     run_zsh('nix-channel --update darwin ')
     run_zsh('darwin-rebuild switch')
 
-def install_packages_with_nix():
-        run_zsh(f'nix-env -i {NIX_PACKAGES_TO_INSTALL}')
+#def install_packages_with_nix():
+#        run_zsh(f'nix-env -i {NIX_PACKAGES_TO_INSTALL}')
 
 def install_home_manager(dist:Distribution, pkg_m: PackageManager):
     if run_zsh('command -v home-manager', True)!=0:

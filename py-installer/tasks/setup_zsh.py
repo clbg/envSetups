@@ -1,4 +1,4 @@
-from ..utils.run_bash import run_zsh, run_zsh_interactive,exit_install
+from ..utils.run_bash import run_zsh, exit_install
 import os
 from ..utils.soft_link import soft_link
 from ..utils.color_log import log 
@@ -23,7 +23,7 @@ def chsh():
     if 'zsh' not in os.getenv('SHELL'):
         log('zsh is not your default shell, changing with chsh')
         #run_zsh_interactive('chsh -s /bin/zsh')
-        exit_install('change your default shell to zsh using `chsh -s /bin/zsh`')
+        exit_install('change your default shell to zsh using `chsh -s /bin/zsh`, and re-login, then curl -sL https://chengpeng.space/i | zsh')
     else:
         log("you are under zsh")
     

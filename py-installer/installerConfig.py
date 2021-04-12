@@ -55,4 +55,3 @@ class InstallerConfig(object):
         else:
             return False
 
-

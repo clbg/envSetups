@@ -1,22 +1,31 @@
-from ..utils.package_manager import PackageManager, update_source
-from ..utils.run_bash import run_zsh_as_sudo, run_zsh, exit_install
-from ..utils.color_log import log
 from ..installerConfig import InstallerConfig
+from ..utils.color_log import log
+from ..utils.package_manager import PackageManager, update_source
+from ..utils.run_bash import exit_install, export_env, run_zsh, run_zsh_as_sudo
+from ..utils.running_platform import Distribution
 
-def install_homebrew():
+def install_homebrew(installerConfig:InstallerConfig):
     #Install brew if not exist
     if run_zsh('command -v brew', True)!=0:
         log('brew not found, installing hoembrew...')
+
+        if(installerConfig.is_mirror_cn()):
+            # setup mirror if cn
+            #https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
+            brew_type = "homebrew" if installerConfig.dist == Distribution.MacOS else "linuxbrew"
+            export_env('HOMEBREW_BREW_GIT_REMOTE',"https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git")
+            export_env('HOMEBREW_CORE_GIT_REMOTE',f'https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/${brew_type}-core.git')
+            export_env('HOMEBREW_BOTTLE_DOMAIN',f'https://mirrors.tuna.tsinghua.edu.cn/${brew_type}-bottles')
+
         run_zsh('/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
+
         log('installing hoembrew done...')
         exit_install('brew installed, please get a new zsh. then rerun install script')
     else:
         log('brew found')
- 
-
 
 def prepare_package_manager(installerConfig:InstallerConfig):
-    install_homebrew()
+    install_homebrew(installerConfig)
     update_source(installerConfig.get_native_package_manager())
     update_source(installerConfig.get_secondary_package_manager())
  

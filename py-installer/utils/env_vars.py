@@ -6,3 +6,8 @@ def isEnvEquals(env_name:str, value:str):
 
 def getEnv(env_name:str):
     return os.environ.get(env_name)
+
+def exportEnv(env_name:str, value:str):
+    os.environ[env_name] = value 
+
+

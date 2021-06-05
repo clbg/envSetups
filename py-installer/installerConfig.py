@@ -1,6 +1,7 @@
 from .utils.running_platform import Distribution
 from .utils.package_manager import PackageManager
 from .utils.color_log import log
+from .utils.env_vars import isEnvEquals
 
 import os
 
@@ -50,7 +51,13 @@ class InstallerConfig(object):
 
     def is_mirror_cn(self):
         """ get if is running in cn """
-        if os.getenv('ENV_SETUP_MIRROR') == 'CN':
+        if isEnvEquals('CN','Y'):
+            return True
+        else:
+            return False
+
+    def is_desk(self):
+        if isEnvEquals('DSK','Y'):
             return True
         else:
             return False

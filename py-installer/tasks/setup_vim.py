@@ -11,7 +11,7 @@ def setup_vim(dist:Distribution):
     setup_coc()
 
 def install_neovim():
-    run_zsh('brew install --HEAD neovim')
+    run_zsh('brew install neovim')
 
 def setup_vimrc():
     run_zsh('mkdir -p ~/.config/nvim')

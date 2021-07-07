@@ -97,7 +97,12 @@ if [[  -f "$HOME/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi
+
 
 export PATH=$HOME/.toolbox/bin:$PATH
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

@@ -97,11 +97,7 @@ if [[  -f "$HOME/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi
 
-
-if [ -n "${commands[fzf-share]}" ]; then
-  source "$(fzf-share)/key-bindings.zsh"
-  source "$(fzf-share)/completion.zsh"
-fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 export PATH=$HOME/.toolbox/bin:$PATH

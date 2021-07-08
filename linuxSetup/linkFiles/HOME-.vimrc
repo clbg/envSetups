@@ -80,6 +80,18 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 "  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 nnoremap <leader>z :Prettier<CR>
 
+"MarkdownPreview
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"{{{
+nnoremap <leader>mp :MarkdownPreview<CR>
+
+let g:mkdp_open_to_the_world = 1
+let g:mkdp_echo_preview_url = 1
+
+
+"}}}""
+
+
 "Auto pair
 Plug 'jiangmiao/auto-pairs'
 "Plug 'neovim/nvim-lspconfig'

@@ -22,11 +22,17 @@ set signcolumn=number
 set incsearch
 "source config in current folder".nvimrc" or ".exrc"
 set exrc
+set splitright
 
-
-" Keybaord Remapping
+"=============== Global Keybinds ===============
+"Keybaord Remapping
 let mapleader = " "
+"enter terminal
+nnoremap <silent> <leader>t :vsplit term://zsh<CR>
+" bind esc to exit terminal
+tnoremap <Esc> <C-\><C-n>
 
+"=============== Plugins        ===============
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -35,10 +41,13 @@ call plug#begin('~/.vim/plugged')
 "Start Screen
 Plug 'mhinz/vim-startify'
 let g:startify_change_to_dir = 1
+
 "Nerd tree
 Plug 'scrooloose/nerdtree'
+
 "Nerd comment
 "Plug 'preservim/nerdcommenter'
+
 "" FZF 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -61,8 +70,10 @@ Plug 'junegunn/fzf.vim'
   nnoremap <silent> <leader>ga :BCommits<CR>
   nnoremap <silent> <leader>ft :Filetypes<CR>
 "}}}
+
 " Theme 
 Plug 'morhetz/gruvbox'
+
 " fugitive
 Plug 'tpope/vim-fugitive'
 "{{{
@@ -70,7 +81,9 @@ Plug 'tpope/vim-fugitive'
     nmap <leader>gj :diffget //3<CR>
     nmap <leader>gf :diffget //2<CR>
 "}}}"
+
 Plug 'vim-airline/vim-airline'
+
 "prettier
 "" post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -82,15 +95,9 @@ nnoremap <leader>z :Prettier<CR>
 
 "MarkdownPreview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-"{{{
 nnoremap <leader>mp :MarkdownPreview<CR>
-
 let g:mkdp_open_to_the_world = 1
 let g:mkdp_echo_preview_url = 1
-
-
-"}}}""
-
 
 "Auto pair
 Plug 'jiangmiao/auto-pairs'
@@ -105,7 +112,6 @@ Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
-
 
 "nix
 Plug 'LnL7/vim-nix'
@@ -298,24 +304,3 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " COC <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-">>>>>>>>>>>>>>>>>>>>from completion-vim>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-"
-"" ref https://github.com/nvim-lua/completion-nvim
-"" Use <Tab> and <S-Tab> to navigate through popup menu
-"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"
-"" Set completeopt to have a better completion experience
-"set completeopt=menuone,noinsert,noselect
-"
-"" Avoid showing message extra message when using completion
-"set shortmess+=c
-"let g:completion_enable_snippet = 'UltiSnips'
-"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
-"let g:completion_sorting = "length"
-"let g:completion_matching_smart_case = 1
-"let g:completion_trigger_character = ['.', '::']
-"let g:completion_trigger_on_delete = 1
-""let g:completion_timer_cycle = 200 "default value is 80
-""let g:completion_trigger_keyword_length = 3 " default = 1
-"<<<<<<<<<<<<<<<<<<<<<<from completion-vim<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

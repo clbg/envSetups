@@ -1,22 +1,9 @@
 Include ~/.ssh/config_local
 
-Host st
-	HostName 192.168.193.1
-	User pengcheng
-	DynamicForward 127.0.0.1:1081
-	ForwardX11 yes
-
-Host st2
-	HostName 192.168.193.6
-	User pengcheng
-	ForwardX11 yes
-
-Host gst
-	HostName buaadml.info
-	User pengcheng
-        ProxyCommand ssh pengcheng@192.168.193.1  -W %h:%p
-	ForwardX11 yes
-
 Host space
 	HostName chengpeng.space
 	User root
+
+Host ls-or1
+    HostName ls-or1.chengpeng.press
+    User admin

@@ -29,8 +29,12 @@ set splitright
 let mapleader = " "
 "enter terminal
 nnoremap <silent> <leader>t :vsplit term://zsh<CR>
+"close buffer
+nnoremap <Esc><Esc> :q<CR>
+
 " bind esc to exit terminal
 tnoremap <Esc> <C-\><C-n>
+
 
 "=============== Plugins        ===============
 " Specify a directory for plugins
@@ -56,6 +60,7 @@ Plug 'junegunn/fzf.vim'
   let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
   nnoremap <silent> <leader><space> :Files<CR>
+  nnoremap <silent> <leader>b :Buffers<CR>
   "nnoremap <silent> <leader><space> :GFiles<CR>
   "nnoremap <silent> <leader>a :Buffers<CR>
   nnoremap <silent> <leader>A :Windows<CR>

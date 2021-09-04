@@ -1,0 +1,6 @@
+- name: copy zshrc
+  ansible.builtin.file:
+    src: ~/envSetups/linuxSetup/linkFiles/HOME-.zshrc
+    dest: ~/.zshrc
+    state: link
+    force: true

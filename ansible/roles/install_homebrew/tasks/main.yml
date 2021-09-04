@@ -1,0 +1,15 @@
+---
+# Refer https://github.com/ideasonpurpose/ansible-playbooks/blob/master/roles/homebrew/tasks/install-homebrew.yml
+
+
+
+- name: Download Homebrew installation script
+  get_url:
+    url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+    dest: /tmp/install
+
+- name: Install Homebrew
+  shell: /tmp/install
+# 🎉 https://stackoverflow.com/a/39864317/503463
+
+

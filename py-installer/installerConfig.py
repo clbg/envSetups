@@ -3,7 +3,8 @@ from .utils.package_manager import PackageManager
 from .utils.color_log import log
 from .utils.env_vars import isEnvEquals
 
-import os
+common_packages=  'htop direnv fortune fzf tmux vim git curl wget rsync nodejs autojump the_silver_searcher icdiff fzf yarn '
+
 
 PKGLIST_FOR_NATIVE_PKG_M_DICT = {
    # silver_searcher is code searcher https://github.com/ggreer/the_silver_searcher#installing
@@ -11,7 +12,7 @@ PKGLIST_FOR_NATIVE_PKG_M_DICT = {
    Distribution.Debian: '',
    Distribution.Ubuntu: '',
    Distribution.Arch: '',
-   Distribution.MacOS: 'google-chrome iterm2 karabiner-elements kicad kindle telegram wechat deepl',
+   Distribution.MacOS: 'google-chrome iterm2 karabiner-elements kindle telegram wechat deepl',
 }
 
 class InstallerConfig(object):
@@ -41,13 +42,13 @@ class InstallerConfig(object):
 
     def get_secondary_package_manager(self):
         if self.dist == Distribution.MacOS:
-            return PackageManager.UnKnown
+            return PackageManager.Brew
         if self.dist == Distribution.Windows:
             return PackageManager.UnKnown
         return PackageManager.LinuxBrew
 
     def get_secondary_package_manager_install_list(self):
-        return ''
+        return common_packages
 
     def is_mirror_cn(self):
         """ get if is running in cn """

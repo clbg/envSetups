@@ -30,7 +30,7 @@ let mapleader = " "
 "enter terminal
 nnoremap <silent> <leader>t :vsplit term://zsh<CR>
 "close buffer
-nnoremap <Esc><Esc> :q<CR>
+nnoremap <leader><Esc> :q<CR>
 
 " bind esc to exit terminal
 tnoremap <Esc> <C-\><C-n>
@@ -119,8 +119,12 @@ Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
 
 "nix
-Plug 'LnL7/vim-nix'
 Plug 'vim-test/vim-test'
+
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
 
 call plug#end()
 

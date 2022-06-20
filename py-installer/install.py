@@ -5,6 +5,7 @@ from .tasks.setup_ssh import setup_ssh
 from .tasks.setup_fzf import setup_fzf
 from .tasks.setup_vim import setup_vim
 from .tasks.setup_zsh import setup_zsh
+from .tasks.clean_up import clean_up
 from .utils.running_platform import Distribution, get_distribution, get_major_version 
 from .installerConfig import InstallerConfig
 
@@ -19,6 +20,7 @@ install_packages(installerConfig)
 setup_ssh()
 setup_vim(dist)
 setup_fzf()
+clean_up()
 
 if dist== Distribution.MacOS:
     setup_macos()

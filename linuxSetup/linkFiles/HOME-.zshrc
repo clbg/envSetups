@@ -100,13 +100,12 @@ if [[  -f "$HOME/.zshrc_local" ]]; then
   source ~/.zshrc_local
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 export PATH=$HOME/.toolbox/bin:$PATH
 
-
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

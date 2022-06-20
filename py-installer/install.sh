@@ -39,7 +39,7 @@ clone_env(){
         log "Pulling done"
     else
         log "Cloning envSetup package"
-        git clone https://github.com/pengchengbuaa/envSetups.git
+        git clone https://github.com/clbg/envSetups.git
         log "Cloning done"
     fi
 }

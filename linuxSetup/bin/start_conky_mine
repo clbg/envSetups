@@ -1,6 +1,0 @@
-#!/bin/bash
-
-conky -c /home/pengcheng/bin/conky1.10_shortcuts_mine &&
-conky -c /home/pengcheng/bin/conky_mine &&
-
-exit 0

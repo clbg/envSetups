@@ -1,5 +1,0 @@
-cd ~/jtech/
-jekyll build
-
-
-rsync -r ~/jtech/_site/ root@chengpeng.space:/var/www/html/tech/

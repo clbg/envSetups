@@ -3,7 +3,7 @@ from .utils.package_manager import PackageManager
 from .utils.color_log import log
 from .utils.env_vars import isEnvEquals
 
-common_packages=  'htop direnv fortune fzf tmux vim git curl wget rsync nodejs autojump the_silver_searcher icdiff fzf yarn '
+common_packages=  'htop fortune fzf tmux vim git curl wget rsync nodejs autojump the_silver_searcher icdiff fzf yarn tldr'
 
 
 PKGLIST_FOR_NATIVE_PKG_M_DICT = {

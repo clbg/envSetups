@@ -83,6 +83,8 @@ ZSH_THEME="re5et"
 
 if [ -e /home/linuxbrew/.linuxbrew/bin/brew ]; then eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv); fi
 
+if [[ -e "/opt/homebrew/bin/brew" ]]; then eval $(/opt/homebrew/bin/brew shellenv); fi
+
 plugins=(
   git
   autojump
@@ -102,7 +104,6 @@ fi
 
 
 export PATH=$HOME/.toolbox/bin:$PATH
-
 source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

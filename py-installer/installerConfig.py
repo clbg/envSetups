@@ -12,7 +12,7 @@ PKGLIST_FOR_NATIVE_PKG_M_DICT = {
    Distribution.Debian: '',
    Distribution.Ubuntu: '',
    Distribution.Arch: '',
-   Distribution.MacOS: 'google-chrome iterm2 karabiner-elements kindle telegram wechat deepl',
+   Distribution.MacOS: 'google-chrome iterm2 karabiner-elements kindle telegram wechat deepl raycast ',
 }
 
 class InstallerConfig(object):

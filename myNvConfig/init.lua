@@ -1,5 +1,14 @@
 require("plugins").setup()
 
+local set = vim.opt
+
+-- Set the behavior of tab
+set.tabstop = 4
+set.shiftwidth = 4
+set.softtabstop = 4
+set.expandtab = true
+
+
 --"syntax on
 --"
 --"set mouse=a

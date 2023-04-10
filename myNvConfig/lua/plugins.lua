@@ -180,6 +180,7 @@ function M.setup()
           ensure_installed = {
             'tsserver',
             'lua_ls',
+            'jsonls',
             'eslint',
             'html',
             'cssls'
@@ -195,6 +196,7 @@ function M.setup()
         --require("mason-lspconfig").setup()
         require("lspconfig").tsserver.setup {}
         require("lspconfig").lua_ls.setup {}
+        require("lspconfig").jsonls.setup {}
       end,
     }
 

@@ -116,66 +116,10 @@ function M.setup()
       },
     }
 
-    --    -- Completion
-    --    use {
-    --      "ms-jpq/coq_nvim",
-    --      branch = "coq",
-    --      event = "InsertEnter",
-    --      opt = true,
-    --      run = ":COQdeps",
-    --      config = function()
-    --        require("config.coq").setup()
-    --      end,
-    --      requires = {
-    --        { "ms-jpq/coq.artifacts", branch = "artifacts" },
-    --        { "ms-jpq/coq.thirdparty", branch = "3p", module = "coq_3p" },
-    --      },
-    --      disable = false,
-    --    }
-    --
-    --    use {
-    --      "hrsh7th/nvim-cmp",
-    --      event = "InsertEnter",
-    --      opt = true,
-    --      config = function()
-    --        require("config.cmp").setup()
-    --      end,
-    --      wants = { "LuaSnip" },
-    --      requires = {
-    --        "hrsh7th/cmp-buffer",
-    --        "hrsh7th/cmp-path",
-    --        "hrsh7th/cmp-nvim-lua",
-    --        "ray-x/cmp-treesitter",
-    --        "hrsh7th/cmp-cmdline",
-    --        "saadparwaiz1/cmp_luasnip",
-    --        "hrsh7th/cmp-calc",
-    --        "f3fora/cmp-spell",
-    --        "hrsh7th/cmp-emoji",
-    --        {
-    --          "L3MON4D3/LuaSnip",
-    --          wants = "friendly-snippets",
-    --          config = function()
-    --            require("config.luasnip").setup()
-    --          end,
-    --        },
-    --        "rafamadriz/friendly-snippets",
-    --        disable = false,
-    --      },
-    --    }
-
-
-
-    ----LSP
     use {
-      "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig",
       config = function()
         require("mason").setup()
-      end,
-    }
-
-    use {
-      "williamboman/mason-lspconfig.nvim",
-      config = function()
         require("mason-lspconfig").setup({
           ensure_installed = {
             'tsserver',
@@ -187,84 +131,11 @@ function M.setup()
           }
         })
       end,
+      requires = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+      },
     }
-
-    use {
-      "neovim/nvim-lspconfig",
-      config = function()
-        -- require("mason").setup()
-        --require("mason-lspconfig").setup()
-        require("lspconfig").tsserver.setup {}
-        require("lspconfig").lua_ls.setup {}
-        require("lspconfig").jsonls.setup {}
-      end,
-    }
-
-    --
-    --
-    --
-    ---- LSP
-    --    use {
-    --        'williamboman/mason.nvim',
-    --        config = function()
-    --            require("mason").setup()
-    --        end,
-    --    }
-    --
-    --    use {
-    --        'williamboman/mason-lspconfig.nvim',
-    --        config = function()
-    --            require("mason-lspconfig").setup()
-    --        end,
-    --    }
-    --
-    --    use {
-    --      "neovim/nvim-lspconfig",
-    --      opt = true,
-    --      event = { "BufReadPre" },
-    --      wants = {
-    --        -- "nvim-lsp-installer",
-    --        "mason.nvim",
-    --        "mason-lspconfig.nvim",
-    --        "mason-tool-installer.nvim",
-    --        "cmp-nvim-lsp",
-    --        --"lua-dev.nvim",
-    --        --"vim-illuminate",
-    --        --"null-ls.nvim",
-    --        --"schemastore.nvim",
-    --        "typescript.nvim",
-    --        --"nvim-navic",
-    --      },
-    --      config = function()
-    --        print("load lspconfig")
-    --        require("config.lsp").setup()
-    --      end,
-    --      requires = {
-    --        -- "williamboman/nvim-lsp-installer",
-    --        "williamboman/mason.nvim",
-    --        "williamboman/mason-lspconfig.nvim",
-    --        "WhoIsSethDaniel/mason-tool-installer.nvim",
-    --        -- { "lvimuser/lsp-inlayhints.nvim", branch = "readme" },
-    --        "folke/lua-dev.nvim",
-    --        "RRethy/vim-illuminate",
-    --        --"jose-elias-alvarez/null-ls.nvim",
-    --        --{
-    --        --  "j-hui/fidget.nvim",
-    --        --  config = function()
-    --        --    require("fidget").setup {}
-    --        --  end,
-    --        --},
-    --        --"b0o/schemastore.nvim",
-    --        "jose-elias-alvarez/typescript.nvim",
-    --        {
-    --          "SmiteshP/nvim-navic",
-    --          config = function()
-    --            require("nvim-navic").setup {}
-    --          end,
-    --          module = { "nvim-navic" },
-    --        },
-    --      },
-    --    }
 
     -- color
     use {
@@ -282,20 +153,15 @@ function M.setup()
       event = "InsertEnter",
       opt = true,
       run = ":COQdeps",
-      --      config = function()
-      --        require("config.coq").setup()
-      --      end,
+      config = function()
+        require("config.coq").setup()
+      end,
       requires = {
         { "ms-jpq/coq.artifacts",  branch = "artifacts" },
         { "ms-jpq/coq.thirdparty", branch = "3p",       module = "coq_3p" },
       },
       disable = false,
     }
-
-
-
-
-
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
@@ -312,3 +178,4 @@ function M.setup()
 end
 
 return M
+

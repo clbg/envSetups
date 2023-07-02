@@ -130,6 +130,11 @@ function M.setup()
             'cssls'
           }
         })
+        require("lspconfig").tsserver.setup {}
+        require("lspconfig").lua_ls.setup {}
+        require("lspconfig").jsonls.setup {}
+        require("lspconfig").html.setup {}
+
       end,
       requires = {
         "williamboman/mason.nvim",

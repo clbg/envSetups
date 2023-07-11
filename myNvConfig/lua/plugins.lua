@@ -127,14 +127,16 @@ function M.setup()
             'jsonls',
             'eslint',
             'html',
-            'cssls'
+            'cssls',
+            'jdtls',
+
           }
         })
         require("lspconfig").tsserver.setup {}
         require("lspconfig").lua_ls.setup {}
         require("lspconfig").jsonls.setup {}
         require("lspconfig").html.setup {}
-
+        require("lspconfig").jdtls.setup {}
       end,
       requires = {
         "williamboman/mason.nvim",
@@ -182,5 +184,12 @@ function M.setup()
   packer.startup(plugins)
 end
 
-return M
+local f = io.open("localConfig.lua", "r")
+if f ~= nil and io.close(f) then
+  require("localConfig").setup()
+  print("loading local config")
+else
+  print("local config not exists")
+end
 
+return M

@@ -1,4 +1,5 @@
 *__pycache__*
+myNvConfig/lua/localConfig.lua
 .vscode
 *automatic_backups*
 myNvConfig/plugin/packer_compiled.lua

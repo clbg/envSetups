@@ -201,6 +201,13 @@ function M.setup()
       },
     }
 
+
+    use { "ibhagwan/fzf-lua",
+      -- optional for icon support
+      requires = { "nvim-tree/nvim-web-devicons" }
+    }
+
+
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
       require("packer").sync()

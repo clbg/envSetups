@@ -1,0 +1,10 @@
+#!/bin/bash
+set -x
+
+fd() {
+  preview="git icdiff $@ --color=always -- {-1}"
+  git diff $@ --name-only | fzf -m --ansi --preview "$preview"
+}
+
+# 调用函数
+fd "$@"

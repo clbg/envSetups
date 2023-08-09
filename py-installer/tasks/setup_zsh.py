@@ -18,6 +18,7 @@ def install_oh_my_zsh():
 def link_zsh_files():
     log('Linking files update your zshrc')
     soft_link('~/envSetups/linuxSetup/linkFiles/HOME-.zshrc', '~/.zshrc')
+    soft_link('~/envSetups/linuxSetup/bin', '~/bin_local')
 
 def chsh():
     if 'zsh' not in os.getenv('SHELL'):

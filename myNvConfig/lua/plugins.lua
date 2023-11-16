@@ -171,35 +171,35 @@ function M.setup()
     }
 
 
-    use {
-      "hrsh7th/nvim-cmp",
-      event = "InsertEnter",
-      opt = true,
-      config = function()
-        require("config.cmp").setup()
-      end,
-      wants = { "LuaSnip" },
-      requires = {
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-nvim-lua",
-        "ray-x/cmp-treesitter",
-        "hrsh7th/cmp-cmdline",
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-calc",
-        "f3fora/cmp-spell",
-        "hrsh7th/cmp-emoji",
-        {
-          "L3MON4D3/LuaSnip",
-          wants = "friendly-snippets",
-          config = function()
-            require("config.luasnip").setup()
-          end,
-        },
-        "rafamadriz/friendly-snippets",
-        disable = false,
-      },
-    }
+    --use {
+    --  "hrsh7th/nvim-cmp",
+    --  event = "InsertEnter",
+    --  opt = true,
+    --  config = function()
+    --    require("config.cmp").setup()
+    --  end,
+    --  wants = { "LuaSnip" },
+    --  requires = {
+    --    "hrsh7th/cmp-buffer",
+    --    "hrsh7th/cmp-path",
+    --    "hrsh7th/cmp-nvim-lua",
+    --    "ray-x/cmp-treesitter",
+    --    "hrsh7th/cmp-cmdline",
+    --    "saadparwaiz1/cmp_luasnip",
+    --    "hrsh7th/cmp-calc",
+    --    "f3fora/cmp-spell",
+    --    "hrsh7th/cmp-emoji",
+    --    {
+    --      "L3MON4D3/LuaSnip",
+    --      wants = "friendly-snippets",
+    --      config = function()
+    --        require("config.luasnip").setup()
+    --      end,
+    --    },
+    --    "rafamadriz/friendly-snippets",
+    --    disable = false,
+    --  },
+    --}
 
 
     use { "ibhagwan/fzf-lua",

@@ -207,6 +207,8 @@ function M.setup()
       requires = { "nvim-tree/nvim-web-devicons" }
     }
 
+    ---my plugins
+    use { '~/projects/envSetups/charlie-nvim-plugin' }
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"

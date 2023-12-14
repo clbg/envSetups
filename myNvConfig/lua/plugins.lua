@@ -208,7 +208,7 @@ function M.setup()
     }
 
     ---my plugins
-    use { '~/projects/envSetups/charlie-nvim-plugin' }
+    use { '~/envSetups/charlie-nvim-plugin' }
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"

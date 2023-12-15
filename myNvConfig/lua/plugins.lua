@@ -129,7 +129,7 @@ function M.setup()
             'html',
             'cssls',
             'jdtls',
-
+            'pyright'
           }
         })
         require("lspconfig").tsserver.setup {}
@@ -137,6 +137,7 @@ function M.setup()
         require("lspconfig").jsonls.setup {}
         require("lspconfig").html.setup {}
         require("lspconfig").jdtls.setup {}
+        require("lspconfig").pyright.setup {}
       end,
       requires = {
         "williamboman/mason.nvim",

@@ -7,6 +7,8 @@ set.tabstop = 2
 set.shiftwidth = 2
 set.softtabstop = 4
 set.expandtab = true
+set.swapfile = false
+
 
 
 --"syntax on

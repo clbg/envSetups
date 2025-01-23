@@ -8,7 +8,6 @@ def setup_vim(dist:Distribution):
     setup_vimrc()
     install_vim_plug()
     update_vim_plug()
-    setup_coc()
 
 def install_neovim():
     run_zsh('brew install neovim')
@@ -17,30 +16,20 @@ def setup_vimrc():
     run_zsh('mkdir -p ~/.config/nvim')
     run_zsh('mkdir -p ~/.vim/undodir')
     soft_link('~/envSetups/linuxSetup/linkFiles/HOME-.vimrc','~/.vimrc')
-    soft_link('~/.vimrc','~/.config/nvim/init.vim')
+    soft_link('~/envSetups/linuxSetup/linkFiles/nvim', '~/.config/nvim')
+    #soft_link('~/vimrc','~/.config/nvim/init.vim')
 
 
 def install_vim_plug():
-    # for vim
+    #for vim
     run_zsh('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-    # for neovim
-    run_zsh(r"sh -c 'curl -fLo ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'")
     
 def update_vim_plug():
     # https://github.com/junegunn/vim-plug/issues/225
     #for nvim
-    # TODO
     log('upgrading Plugd')
-    run_zsh('nvim --headless +PlugUpgrade +qa')
-    log('updating Plugd')
-    run_zsh('nvim --headless +PlugUpdate +qa')
-    log('installling Plugd')
-    run_zsh('nvim --headless +PlugInstall +qa')
+    run_zsh('nvim --headless +PackerSync +qa')
 
-
-def setup_coc():	
-    log("settingup coc")	
-    run_zsh('nvim --headless  "+CocUninstall -sync coc-python" +qa')	
-    run_zsh('nvim --headless  "+CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-pyright coc-eslint coc-spell-checker" +qa')	
-    log("settingup coc done")	
-
+if __name__ == "__main__":
+    log("running this file directly")
+    setup_vim("any")

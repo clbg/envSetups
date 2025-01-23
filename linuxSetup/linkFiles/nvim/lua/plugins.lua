@@ -37,12 +37,12 @@ function M.setup()
     use { "wbthomason/packer.nvim" }
 
     -- Colorscheme
-    use {
-      "sainnhe/everforest",
-      config = function()
-        vim.cmd "colorscheme everforest"
-      end,
-    }
+    --use {
+    --  "sainnhe/everforest",
+    --  config = function()
+    --    vim.cmd "colorscheme everforest"
+    --  end,
+    --}
 
     -- Startup screen
     use {
@@ -206,6 +206,9 @@ function M.setup()
     use { "ibhagwan/fzf-lua",
       -- optional for icon support
       requires = { "nvim-tree/nvim-web-devicons" }
+    }
+
+    use { "tpope/vim-fugitive",
     }
 
     ---my plugins

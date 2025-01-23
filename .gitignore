@@ -2,5 +2,5 @@
 myNvConfig/lua/localConfig.lua
 .vscode
 *automatic_backups*
-myNvConfig/plugin/packer_compiled.lua
+linuxSetup/linkFiles/nvim/plugin/packer_compiled.lua
 

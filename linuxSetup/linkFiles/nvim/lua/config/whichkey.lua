@@ -4,7 +4,7 @@ function M.setup()
   local whichkey = require "which-key"
 
   local conf = {
-    window = {
+    win = {
       border = "none",     -- none, single, double, shadow
       position = "bottom", -- bottom, top
     },

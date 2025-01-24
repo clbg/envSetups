@@ -122,7 +122,7 @@ function M.setup()
         require("mason").setup()
         require("mason-lspconfig").setup({
           ensure_installed = {
-            'tsserver',
+            'ts_ls',
             'lua_ls',
             'jsonls',
             'eslint',
@@ -132,7 +132,7 @@ function M.setup()
             'pyright'
           }
         })
-        require("lspconfig").tsserver.setup {}
+        require("lspconfig").ts_ls.setup {}
         require("lspconfig").lua_ls.setup {}
         require("lspconfig").jsonls.setup {}
         require("lspconfig").html.setup {}

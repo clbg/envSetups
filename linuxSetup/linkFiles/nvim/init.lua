@@ -1,5 +1,5 @@
-require("plugins").setup()
 
+vim.g.maplocalleader = " "
 local set = vim.opt
 
 -- Set the behavior of tab
@@ -8,6 +8,7 @@ set.shiftwidth = 2
 set.softtabstop = 4
 set.expandtab = true
 set.swapfile = false
+require("config.lazy")
 
 
 

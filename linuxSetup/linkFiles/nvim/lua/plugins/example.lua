@@ -12,6 +12,8 @@ return {
 	-- add gruvbox
 	{ "ellisonleao/gruvbox.nvim" },
 
+  { "folke/flash.nvim", enabled = false },
+
 	-- Configure LazyVim to load gruvbox
 	{
 		"LazyVim/LazyVim",

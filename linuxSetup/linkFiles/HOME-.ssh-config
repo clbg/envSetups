@@ -7,3 +7,9 @@ Host space
 Host ls-or1
     HostName ls-or1.chengpeng.press
     User admin
+
+Host claw-tk1
+    HostName claw-tk1.chengpeng.press
+    User ubuntu 
+    IdentityFile ~/.ssh/LightsailDefaultKey-ap-northeast-1.pem
+    IdentitiesOnly yes

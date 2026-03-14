@@ -129,7 +129,9 @@ manage_repo() {
 run_installer() {
     log "Running Python installer..."
     cd "${HOME}/envSetups" || fatal "envSetups not found"
-    python3 -m py-installer.install || fatal "Python installer failed"
+    
+    # Run Python with clean environment (no PYTHONHOME/PYTHONPATH)
+    env -u PYTHONHOME -u PYTHONPATH python3 -m py-installer.install || fatal "Python installer failed"
 }
 
 #========================

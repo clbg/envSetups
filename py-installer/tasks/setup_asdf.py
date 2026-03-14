@@ -1,6 +1,6 @@
 """Setup asdf - unified runtime version manager"""
 from ..utils.run_bash import run_zsh
-from ..utils.color_log import log, warn
+from ..utils.color_log import log
 from ..utils.running_platform import Distribution
 from ..installerConfig import InstallerConfig
 
@@ -11,8 +11,8 @@ def setup_asdf(config: InstallerConfig):
     
     # 1. Check if asdf is already installed
     if run_zsh('command -v asdf', ignore_error=True) == 0:
-        log("asdf already installed, checking for updates...")
-        update_asdf(config.dist)
+        log("asdf already installed ✓")
+        # Uncomment to auto-update: update_asdf(config.dist)
     else:
         log("Installing asdf...")
         install_asdf(config.dist)

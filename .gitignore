@@ -1,6 +1,27 @@
+# Python
 *__pycache__*
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Project specific
 myNvConfig/lua/localConfig.lua
-.vscode
 *automatic_backups*
 linuxSetup/linkFiles/nvim/plugin/packer_compiled.lua
 
+# Test/Example projects (not part of envSetups)
+charlie-nvim-plugin/
+
+# Temporary files
+*.tmp
+*.bak
+.DS_Store

@@ -1,4 +1,3 @@
-from distro import major_version
 from .tasks.install_package import install_packages
 from .tasks.setup_macos import setup_macos
 from .tasks.setup_ssh import setup_ssh

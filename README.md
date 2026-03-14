@@ -1,7 +1,7 @@
 # envSetups
 some scripts to set up my computer 
 
-## prequesite
+## Prerequisites
 
 ### macOS
 
@@ -35,8 +35,8 @@ assets for linux
 ## macosSetup
 assets for macos
 
-## windowsReg
-some reg files with config on windows
+## windowsRegs
+Windows registry files for configuration
 
 ## CheatSheets
 
@@ -44,7 +44,7 @@ some reg files with config on windows
 ```
 git remote set-url origin git@github.com:clbg/envSetups.git
 ```
-### switching to tunna mirror of brew
+### Switching to Tuna mirror of Homebrew
 ```
 git -C "$(brew --repo)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
 git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git

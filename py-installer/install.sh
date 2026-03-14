@@ -84,23 +84,32 @@ manage_repo() {
     local repo_url="${REPO_URL:-https://github.com/clbg/envSetups.git}"
     
     if [ -d "${repo_dir}/.git" ]; then
-        log "Updating repository..."
-
-        # Check for local changes first
+        # Check for local changes
         if ! git -C "${repo_dir}" diff-index --quiet HEAD -- 2>/dev/null; then
-            fatal "Local changes detected in ${repo_dir}. Please commit or stash them first:
-  cd ${repo_dir}
-  git status
-  git stash save 'backup before envSetups update'
-  # Or commit your changes"
-        fi
+            warn "Local changes detected in ${repo_dir}"
+            warn "Using local version (skipping remote update)"
+            warn "To sync with remote later, run:"
+            warn "  cd ${repo_dir} && git status"
+            log "Continuing with local version..."
+        else
+            log "Checking for updates..."
+            # Fetch to check if remote has changes
+            git -C "${repo_dir}" fetch origin 2>/dev/null || true
 
-        # Try to pull
-        if ! git -C "${repo_dir}" pull; then
-            fatal "Git pull failed. Please resolve manually:
-  cd ${repo_dir}
-  git status
-  git pull"
+            # Check if we're behind remote
+            local local_commit=$(git -C "${repo_dir}" rev-parse HEAD)
+            local remote_commit=$(git -C "${repo_dir}" rev-parse origin/master 2>/dev/null || echo "")
+
+            if [ -n "${remote_commit}" ] && [ "${local_commit}" != "${remote_commit}" ]; then
+                log "Remote has updates, pulling..."
+                if git -C "${repo_dir}" pull; then
+                    log "Repository updated successfully ✓"
+                else
+                    warn "Pull failed, continuing with current version"
+                fi
+            else
+                log "Already up to date ✓"
+            fi
         fi
     else
         log "Cloning repository..."

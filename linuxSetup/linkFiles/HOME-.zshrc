@@ -116,3 +116,22 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 eval "$(direnv hook zsh)"
+
+# ========================================
+# asdf - Unified Runtime Version Manager
+# ========================================
+# Load asdf (Homebrew on macOS, git clone on Linux)
+if [ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]; then
+    # macOS Apple Silicon
+    . /opt/homebrew/opt/asdf/libexec/asdf.sh
+elif [ -f /usr/local/opt/asdf/libexec/asdf.sh ]; then
+    # macOS Intel
+    . /usr/local/opt/asdf/libexec/asdf.sh
+elif [ -f ~/.asdf/asdf.sh ]; then
+    # Linux (git clone)
+    . ~/.asdf/asdf.sh
+fi
+
+# Python: Create virtual environment helpers
+alias venv='python -m venv .venv'
+alias activate='source .venv/bin/activate'

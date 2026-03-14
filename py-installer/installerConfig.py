@@ -3,7 +3,14 @@ from .utils.package_manager import PackageManager
 from .utils.color_log import log
 from .utils.env_vars import isEnvEquals
 
-common_packages=  'htop fortune fzf tmux vim git curl wget rsync nodejs autojump the_silver_searcher icdiff fzf yarn tldr bat direnv'
+# Core packages (not managed by asdf)
+common_packages = 'htop fortune fzf tmux vim git curl wget rsync autojump the_silver_searcher icdiff tldr bat direnv'
+
+# Runtime versions managed by asdf
+ASDF_RUNTIMES = {
+    'python': ['3.11.7', '3.12.1'],
+    'nodejs': ['20.11.0'],
+}
 
 
 PKGLIST_FOR_NATIVE_PKG_M_DICT = {
@@ -63,3 +70,6 @@ class InstallerConfig(object):
         else:
             return False
 
+    def get_asdf_runtimes(self):
+        """Get runtime versions to be managed by asdf"""
+        return ASDF_RUNTIMES

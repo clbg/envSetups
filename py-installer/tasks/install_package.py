@@ -53,9 +53,9 @@ def install_packages_with_package_manager(package_list: str, pkg_m: PackageManag
         if pkg_m == PackageManager.Yum:
             run_zsh_as_sudo(f'yum -y install {package_list}')
         if pkg_m == PackageManager.Brew:
-            run_zsh(f'brew install {package_list}')
+            run_zsh(f'brew install {package_list}', ignore_error=True)
         if pkg_m == PackageManager.LinuxBrew:
-            run_zsh(f'brew install {package_list}')
+            run_zsh(f'brew install {package_list}', ignore_error=True)
     else:
         log('empty list, returning')
  

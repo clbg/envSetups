@@ -70,46 +70,15 @@ All subsequent steps prefix commands with `$SSH` instead of running locally.
 
 ---
 
-## 1. Package Manager + Brew Packages (slow — run first)
+## 1. Package Manager + Packages
 
-This is the slowest part of the setup. Start it first, then run Group A in parallel.
+### Desired packages
 
-### macOS
-- Install Homebrew if not present: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-- After install, ensure brew is on PATH (eval shellenv for `/opt/homebrew/bin/brew` or `/usr/local/bin/brew`)
-- `brew update`
+These tools should be installed. The agent decides HOW based on the OS:
 
-### Linux (Ubuntu/Debian)
-- `sudo apt update`
-- Install build dependencies first: `sudo apt install -y build-essential procps file stow`
-- On low-memory instances (< 1GB RAM), add swap before installing brew packages:
-  ```
-  sudo fallocate -l 2G /swapfile
-  sudo chmod 600 /swapfile
-  sudo mkswap /swapfile
-  sudo swapon /swapfile
-  echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-  ```
-- Install Homebrew (Linuxbrew):
-  ```
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  ```
-- Add brew to PATH: `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`
-- `brew install gcc` (recommended by Homebrew on Linux)
-
-### Linux (Amazon Linux)
-- `sudo yum -y update`
-- Also install Homebrew (Linuxbrew)
-
-### CN Mirror (if env var `CN=Y`)
-- Set Homebrew mirror to Tsinghua:
-  - `HOMEBREW_BREW_GIT_REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git`
-  - `HOMEBREW_CORE_GIT_REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git`
-  - `HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles`
-
-### Install common packages (via brew)
 ```
-htop fortune fzf tmux vim git curl wget rsync autojump the_silver_searcher icdiff tldr bat direnv starship zoxide ripgrep tree ncdu stow mise neovim
+htop fortune fzf tmux vim git curl wget rsync autojump the_silver_searcher
+icdiff tldr bat direnv starship zoxide ripgrep tree ncdu stow mise neovim
 ```
 
 ### macOS GUI apps (via `brew install --cask`)
@@ -117,11 +86,49 @@ htop fortune fzf tmux vim git curl wget rsync autojump the_silver_searcher icdif
 iterm2 karabiner-elements kindle telegram wechat deepl raycast
 ```
 
+### Installation strategy
+
+The agent should follow this priority at runtime:
+
+1. **Prefer the native package manager** (apt/yum) — it's faster and has no dependency chain overhead.
+   - Run `apt-cache show <pkg>` or equivalent to check availability before installing.
+   - Some package names differ across distros (e.g. `bat` → `bat` on Debian 13+ but may need alias from `batcat` on older Ubuntu; `the_silver_searcher` → `silversearcher-ag` on apt; `fortune` → `fortune-mod`).
+   - The agent should resolve name differences dynamically, not from a hardcoded mapping.
+2. **Fall back to Homebrew** for anything the native package manager doesn't have.
+   - On macOS, brew is the primary (and only) package manager.
+   - On Linux, only install Linuxbrew if there are packages that apt/yum can't provide.
+3. **Skip already-installed packages** — check `command -v <pkg>` first for idempotency.
+4. **mise** has its own installer (`curl https://mise.jdx.dev/install.sh | sh`) — prefer that on Linux over brew.
+
+### Linux pre-flight
+
+- `sudo apt update` (or `yum update`)
+- Install build essentials if needed: `build-essential procps file`
+- On low-memory instances (< 1GB RAM, check with `free -m`), add swap:
+  ```
+  sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile
+  sudo mkswap /swapfile && sudo swapon /swapfile
+  grep -q swapfile /etc/fstab || echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+  ```
+
+### Homebrew (if needed)
+
+- **macOS**: Install if not present: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+- **Linux**: Only install Linuxbrew if native package manager can't cover the package list.
+  ```
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ```
+  Then: `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"` and `brew install gcc`
+
+### CN Mirror (if env var `CN=Y`)
+- Set Homebrew mirror to Tsinghua:
+  - `HOMEBREW_BREW_GIT_REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git`
+  - `HOMEBREW_CORE_GIT_REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git`
+  - `HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles`
+
 ---
 
-## Group A — No brew dependency (run in parallel with §1)
-
-These steps only need `git`, `zsh`, `curl`, `stow` (from apt) — no brew required.
+## Group A — No package manager dependency (run in parallel with §1)
 
 ### A1. Shell — Zsh
 
@@ -245,7 +252,7 @@ mise auto-switches when you `cd` into the directory.
 
 ---
 
-## 2. Post-brew Steps (after §1 completes)
+## 2. Post-install Steps (after §1 completes)
 
 ### 2.1 Neovim setup
 
@@ -256,13 +263,16 @@ The nvim config is linked by stow in A2. Additional steps:
    mkdir -p ~/.vim/undodir
    ```
 
-> neovim is installed via brew in §1. The config uses LazyVim — plugins auto-install on first launch (`nvim`).
+> The config uses LazyVim — plugins auto-install on first launch (`nvim`).
 
 ### 2.2 fzf Shell Integration
 
-After brew install (§1), run the fzf installer for key bindings and completion:
+Run the fzf installer for key bindings and completion:
 ```
-$(brew --prefix)/opt/fzf/install --all
+# Find fzf install script — location depends on how fzf was installed
+FZF_INSTALL=$(find /usr -name install -path "*/fzf/*" 2>/dev/null | head -1)
+[ -z "$FZF_INSTALL" ] && FZF_INSTALL=$(brew --prefix 2>/dev/null)/opt/fzf/install
+[ -f "$FZF_INSTALL" ] && $FZF_INSTALL --all
 ```
 
 ### 2.3 Cleanup
@@ -293,8 +303,3 @@ Sourced automatically by `.zshrc`:
 
 - **Windows**: see `windowsRegs/` for registry files (dual-boot UTC time, English fonts, 小鹤双拼)
 
----
-
-## TODO
-
-- [ ] Remove `py-installer/` once this prompt-based setup is validated on a fresh machine

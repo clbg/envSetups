@@ -25,3 +25,6 @@ charlie-nvim-plugin/
 *.tmp
 *.bak
 .DS_Store
+
+# Setup execution artifacts
+setup_timing.md

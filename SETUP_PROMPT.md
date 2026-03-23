@@ -5,6 +5,10 @@
 > It replaces the `py-installer` Python scripts.
 >
 > **Execution order matters** — follow the numbered sections sequentially.
+>
+> Dotfiles are managed with [GNU Stow](https://www.gnu.org/software/stow/).
+> All dotfile packages live in `~/envSetups/dotfiles/`.
+> Running `stow <package>` from that directory creates symlinks into `$HOME`.
 
 ## 0. Prerequisites
 
@@ -51,8 +55,6 @@ Detect the OS first and adapt all commands accordingly.
 htop fortune fzf tmux vim git curl wget rsync autojump the_silver_searcher icdiff tldr bat direnv starship zoxide ripgrep tree ncdu stow mise
 ```
 
-> `stow` is included for future dotfile management migration (see TODO at bottom).
-
 ### macOS GUI apps (via `brew install --cask`)
 ```
 iterm2 karabiner-elements kindle telegram wechat deepl raycast
@@ -70,9 +72,9 @@ iterm2 karabiner-elements kindle telegram wechat deepl raycast
    zsh ~/ohmyzsh/tools/install.sh
    ```
    (ignore non-zero exit, it's expected)
-3. Symlink zshrc:
+3. Stow zsh config:
    ```
-   ln -sf ~/envSetups/linuxSetup/linkFiles/HOME-.zshrc ~/.zshrc
+   cd ~/envSetups/dotfiles && stow -t ~ zsh
    ```
 4. Symlink bin scripts:
    ```
@@ -124,21 +126,66 @@ mise auto-switches when you `cd` into the directory.
 
 ---
 
-## 5. SSH
+## 5. Dotfiles — GNU Stow
 
-1. Create `.ssh` directory:
+All dotfile packages are in `~/envSetups/dotfiles/`. Each subdirectory is a stow package
+that mirrors the home directory structure.
+
+### Link all common dotfiles
+```
+cd ~/envSetups/dotfiles
+stow -t ~ zsh vim nvim ssh starship
+```
+
+### macOS only
+```
+cd ~/envSetups/dotfiles
+stow -t ~ karabiner
+```
+
+### Linux desktop only
+```
+cd ~/envSetups/dotfiles
+stow -t ~ i3
+```
+
+### CN mirror only
+```
+cd ~/envSetups/dotfiles
+stow -t ~ pip
+```
+
+### Stow package reference
+
+| Package | Creates symlink | Condition |
+|---|---|---|
+| `zsh` | `~/.zshrc` | all |
+| `vim` | `~/.vimrc` | all |
+| `nvim` | `~/.config/nvim/` | all |
+| `ssh` | `~/.ssh/config` | all |
+| `starship` | `~/.config/starship.toml` | all |
+| `karabiner` | `~/.config/karabiner/` | macOS |
+| `i3` | `~/.i3/config` | Linux desktop |
+| `pip` | `~/.config/pip/pip.conf` | CN mirror |
+
+> To unlink a package: `stow -t ~ -D <package>`
+> To re-link (after changes): `stow -t ~ -R <package>`
+
+---
+
+## 6. SSH (additional setup beyond stow)
+
+The SSH config file is linked by `stow ssh` above. Additional steps:
+
+1. Create `.ssh` directory (if not exists):
    ```
    mkdir -p ~/.ssh
    ```
-2. Symlink SSH config:
-   ```
-   ln -sf ~/envSetups/linuxSetup/linkFiles/HOME-.ssh-config ~/.ssh/config
-   ```
-3. Create local override file (for machine-specific hosts):
+2. Create local override file (for machine-specific hosts):
    ```
    touch ~/.ssh/config_local
    ```
-4. Append public key to authorized_keys (if not already present):
+3. Append public key to authorized_keys (if not already present):
    ```
    grep -qiFf ~/envSetups/linuxSetup/linkFiles/key.pub ~/.ssh/authorized_keys 2>/dev/null || \
      cat ~/envSetups/linuxSetup/linkFiles/key.pub >> ~/.ssh/authorized_keys
@@ -146,34 +193,17 @@ mise auto-switches when you `cd` into the directory.
 
 ---
 
-## 6. Neovim
+## 7. Neovim (additional setup beyond stow)
 
-1. Install: `brew install neovim`
+The nvim config is linked by `stow nvim` above. Additional steps:
+
+1. Install neovim: `brew install neovim`
 2. Create vim undo directory:
    ```
    mkdir -p ~/.vim/undodir
    ```
-3. Symlink configs:
-   ```
-   ln -sf ~/envSetups/linuxSetup/linkFiles/HOME-.vimrc ~/.vimrc
-   ln -sf ~/envSetups/linuxSetup/linkFiles/nvim ~/.config/nvim
-   ```
 
 > The nvim config uses LazyVim. Plugins will auto-install on first launch (`nvim`).
-> No need to run PackerSync or any manual plugin install step.
-
----
-
-## 7. Starship Prompt
-
-1. Already installed via brew in step 2.
-2. Symlink config:
-   ```
-   mkdir -p ~/.config
-   ln -sf ~/envSetups/linuxSetup/linkFiles/HOME-.config-starship.toml ~/.config/starship.toml
-   ```
-
-> The `.zshrc` conditionally loads starship (skips in Kiro terminal).
 
 ---
 
@@ -196,56 +226,11 @@ git config user.name "Cheng Peng"
 
 ---
 
-## 10. macOS-Specific
-
-Only run these on macOS:
-
-### Karabiner-Elements
-```
-ln -sf ~/envSetups/macosSetup/linkFiles/HOME-.config-karabiner ~/.config/karabiner
-```
-
----
-
-## 11. Linux-Specific
-
-Only run these on Linux with a desktop environment:
-
-### i3 Window Manager
-```
-mkdir -p ~/.i3
-ln -sf ~/envSetups/linuxSetup/linkFiles/HOME-.i3-config ~/.i3/config
-```
-
-### pip CN Mirror (if env var `CN=Y`)
-```
-mkdir -p ~/.config/pip
-ln -sf ~/envSetups/linuxSetup/linkFiles/HOME-.config-pip-pip.conf ~/.config/pip/pip.conf
-```
-
----
-
-## 12. Cleanup
+## 10. Cleanup
 
 ```
 brew cleanup --prune=all
 ```
-
----
-
-## Symlink Summary
-
-| Source (in repo) | Target (on machine) | Condition |
-|---|---|---|
-| `linuxSetup/linkFiles/HOME-.zshrc` | `~/.zshrc` | all |
-| `linuxSetup/linkFiles/HOME-.vimrc` | `~/.vimrc` | all |
-| `linuxSetup/linkFiles/nvim/` | `~/.config/nvim` | all |
-| `linuxSetup/linkFiles/HOME-.ssh-config` | `~/.ssh/config` | all |
-| `linuxSetup/linkFiles/HOME-.config-starship.toml` | `~/.config/starship.toml` | all |
-| `linuxSetup/bin/` | `~/bin_local` | all |
-| `macosSetup/linkFiles/HOME-.config-karabiner/` | `~/.config/karabiner` | macOS |
-| `linuxSetup/linkFiles/HOME-.i3-config` | `~/.i3/config` | Linux desktop |
-| `linuxSetup/linkFiles/HOME-.config-pip-pip.conf` | `~/.config/pip/pip.conf` | CN mirror |
 
 ---
 
@@ -273,5 +258,4 @@ Sourced automatically by `.zshrc`:
 
 ## TODO
 
-- [ ] Migrate dotfiles to GNU Stow structure (replace manual `ln -sf` with `stow <package>`)
 - [ ] Remove `py-installer/` once this prompt-based setup is validated on a fresh machine

@@ -24,17 +24,9 @@ source ~/envSetups/linuxSetup/envvar/aliases
 # direnv - per-directory environment variables
 eval "$(direnv hook zsh)"
 
-# asdf - Unified runtime version manager
-if [ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]; then
-    # macOS Apple Silicon
-    . /opt/homebrew/opt/asdf/libexec/asdf.sh
-elif [ -f /usr/local/opt/asdf/libexec/asdf.sh ]; then
-    # macOS Intel
-    . /usr/local/opt/asdf/libexec/asdf.sh
-elif [ -f ~/.asdf/asdf.sh ]; then
-    # Linux (git clone)
-    . ~/.asdf/asdf.sh
-fi
+# mise - runtime version manager (Python, Node, etc.)
+# mise manages runtimes only; direnv handles env vars
+eval "$(mise activate zsh)"
 
 # ========================================
 # Additional Tools

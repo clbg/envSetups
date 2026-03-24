@@ -52,3 +52,11 @@ eval "$(zoxide init zsh)"
 
 
 [[ "$TERM_PROGRAM" != "kiro" ]] && eval "$(starship init zsh)"
+
+# iterm2 current directory update
+iterm2_cwd_update() {
+  printf "\e]7;file://%s%s\a" "$HOST" "$PWD"
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd iterm2_cwd_update

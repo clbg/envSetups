@@ -249,6 +249,41 @@ mise auto-switches when you `cd` into the directory.
 - **direnv** = which env vars to set per directory (`.envrc` files)
 - They work together without conflict. Both are loaded in `.zshrc`.
 
+### A6. Obsidian Vault Setup (Cross-platform Sync)
+
+This setup allows syncing an Obsidian vault via Google Drive while keeping the Git metadata (`.git`) local to each machine to avoid sync conflicts.
+
+1.  **Locate the Google Drive Autosync folder**:
+    - The agent should search common locations:
+        - `~/Google Drive/My Drive/Autosync`
+        - `~/Library/CloudStorage/GoogleDrive-*/My Drive/Autosync`
+    - If a candidate is found, ask the user: "Found Autosync at `<path>`. Use this?"
+    - If not found or rejected, ask the user to provide the path manually or skip this step.
+2.  **Define the path** in `~/.zshrc_local`:
+    ```bash
+    export G_DRIVE_AUTO_SYNC_PATH="<confirmed_path>"
+    ```
+3.  **Initialize the local Git metadata** (idempotent):
+    ```bash
+    mkdir -p ~/.obsidian_vault.git
+    cd ~/.obsidian_vault.git && [ ! -d refs ] && git init --bare .
+    ```
+4.  **Create the symlink** in `~/projects`:
+    ```bash
+    mkdir -p ~/projects
+    ln -sfn "$G_DRIVE_AUTO_SYNC_PATH/CharlieObsidianVault" ~/projects/ObsidianVault
+    ```
+5.  **Configure the synced `.envrc`** (this file lives in Google Drive):
+    ```bash
+    # Path: $G_DRIVE_AUTO_SYNC_PATH/CharlieObsidianVault/.envrc
+    if [[ -z "$G_DRIVE_AUTO_SYNC_PATH" ]]; then
+      echo "Warning: G_DRIVE_AUTO_SYNC_PATH not set. Git integration disabled."
+    else
+      export GIT_DIR="$HOME/.obsidian_vault.git"
+      export GIT_WORK_TREE="$G_DRIVE_AUTO_SYNC_PATH/CharlieObsidianVault"
+    fi
+    ```
+
 ---
 
 ## 2. Post-install Steps (after §1 completes)

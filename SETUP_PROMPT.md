@@ -139,8 +139,7 @@ The agent should follow this priority at runtime:
    ```
 3. Symlink bin scripts:
    ```
-   ln -sf ~/envSetups/linuxSetup/bin ~/bin_local
-   ```
+   ln -sfn ~/envSetups/linuxSetup/bin ~/bin_local   ```
 
 ### A2. Dotfiles — GNU Stow
 

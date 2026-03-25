@@ -231,6 +231,7 @@ eval "$(mise activate zsh)"
 ```
 mise use --global python@3.12
 mise use --global node@22
+mise use --global java@corretto-23
 ```
 
 > mise downloads prebuilt binaries — no compilation needed.
@@ -329,7 +330,7 @@ Sourced automatically by `.zshrc`:
 
 - `~/.zshrc_local` — machine-specific zsh config
 - `~/.ssh/config_local` — machine-specific SSH hosts
-- SDKMAN for Java is loaded in `.zshrc` if present, install separately if needed
+- Java is managed by mise (same as Python/Node): `mise use --global java@corretto-23`
 
 ---
 

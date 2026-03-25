@@ -14,9 +14,6 @@ alias j=z  # Keep 'j' command for muscle memory
 # Load your custom aliases
 source ~/envSetups/linuxSetup/envvar/aliases
     
-# Enhanced git aliases (oh-my-zsh git plugin style)
-[ -f ~/.zsh_custom/git_aliases.zsh ] && source ~/.zsh_custom/git_aliases.zsh
-
 # ========================================
 # Runtime Version Managers
 # ========================================
@@ -24,7 +21,7 @@ source ~/envSetups/linuxSetup/envvar/aliases
 # direnv - per-directory environment variables
 eval "$(direnv hook zsh)"
 
-# mise - runtime version manager (Python, Node, etc.)
+# mise - runtime version manager (Python, Node, Java, etc.)
 # mise manages runtimes only; direnv handles env vars
 eval "$(mise activate zsh)"
 
@@ -34,10 +31,6 @@ eval "$(mise activate zsh)"
 
 # fzf - Fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# SDKMAN - Java version manager (must be at end)
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # ========================================
 # Local Overrides (machine-specific config)
@@ -49,7 +42,6 @@ fi
 eval "$(zoxide init zsh)"
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
-
 
 [[ "$TERM_PROGRAM" != "kiro" ]] && eval "$(starship init zsh)"
 

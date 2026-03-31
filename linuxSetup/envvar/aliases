@@ -19,4 +19,19 @@ alias ll='ls -l'
 
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias ........='cd ../../../../../../..'
+
+# 全角句号版本
+alias 。。='cd ..'
+alias 。。。='cd ../..'
+alias 。。。。='cd ../../..'
+alias 。。。。。='cd ../../../..'
+alias 。。。。。。='cd ../../../../..'
+alias 。。。。。。。='cd ../../../../../..'
+alias 。。。。。。。。='cd ../../../../../../..'
+
 alias gl='git log --graph --decorate --all'

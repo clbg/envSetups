@@ -50,5 +50,24 @@ iterm2_cwd_update() {
   printf "\e]7;file://%s%s\a" "$HOST" "$PWD"
 }
 
+# direnv-aware iTerm2 colors (set ITERM_TAB_COLOR / ITERM_BG_COLOR in .envrc)
+_direnv_iterm_color() {
+  if [[ -n "$ITERM_TAB_COLOR" ]]; then
+    local r=${ITERM_TAB_COLOR%%;*} g=${${ITERM_TAB_COLOR#*;}%%;*} b=${ITERM_TAB_COLOR##*;}
+    printf '\033]6;1;bg;red;brightness;%s\a\033]6;1;bg;green;brightness;%s\a\033]6;1;bg;blue;brightness;%s\a' "$r" "$g" "$b"
+  else
+    printf '\033]6;1;bg;*;default\a'
+  fi
+  if [[ -n "$ITERM_BG_COLOR" ]]; then
+    printf '\033]1337;SetColors=bg=%s\007' "$ITERM_BG_COLOR"
+  else
+    printf '\033]1337;SetColors=bg=default\007'
+  fi
+}
+
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd iterm2_cwd_update
+add-zsh-hook precmd _direnv_iterm_color
+
+# Added by AIM CLI
+export PATH="$HOME/.aim/mcp-servers:$PATH"

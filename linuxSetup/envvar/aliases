@@ -34,4 +34,5 @@ alias 。。。。。。='cd ../../../../..'
 alias 。。。。。。。='cd ../../../../../..'
 alias 。。。。。。。。='cd ../../../../../../..'
 
+alias c='claude --enable-auto-mode'
 alias gl='git log --graph --decorate --all'
